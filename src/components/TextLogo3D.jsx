@@ -30,7 +30,7 @@ const ShinyText = () => {
                     bevelOffset={0}
                     bevelSegments={5}
                 >
-                    Koders Spark
+                    Koder Spark
                     <meshStandardMaterial
                         color="#ffffff"
                         metalness={0.9}
