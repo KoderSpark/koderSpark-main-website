@@ -12,6 +12,7 @@ import Careers from './pages/Careers';
 import JobApplication from './pages/JobApplication';
 
 import ScrollToTop from './components/ScrollToTop';
+import GradualBlur from './components/GradualBlur';
 
 function App() {
     useEffect(() => {
@@ -58,6 +59,16 @@ function App() {
                     </Routes>
                 </main>
                 <Footer />
+                <GradualBlur
+                    target="page"
+                    position="bottom"
+                    height="6rem"
+                    strength={2}
+                    divCount={5}
+                    curve="bezier"
+                    exponential={true}
+                    opacity={1}
+                />
             </div>
         </Router>
     );

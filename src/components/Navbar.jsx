@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, Cpu, Briefcase, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TextLogo3D from './TextLogo3D';
 
+
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -16,24 +16,23 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleMenu = () => setIsOpen(!isOpen);
-
     const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Program', path: '/program' },
-        { name: 'Work', path: '/work' },
-        { name: 'Contact', path: '/contact' },
+        { name: 'Home', path: '/', icon: Home },
+        { name: 'Program', path: '/program', icon: Cpu },
+        { name: 'Work', path: '/work', icon: Briefcase },
+        { name: 'Contact', path: '/contact', icon: Mail },
     ];
 
     const location = useLocation();
 
     return (
         <>
+            {/* Top Bar - Logo Only on Mobile, Logo + Nav on Desktop */}
             <nav
-                className={`fixed top-6 md:top-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-300 ${scrolled
-                    ? 'bg-primary/80 backdrop-blur-md border border-white/10 shadow-lg shadow-primary/20 rounded-full py-5 md:py-4 px-10'
-                    : 'bg-transparent py-7 md:py-6 px-8'
-                    } w-[90%] max-w-4xl`}
+                className={`fixed top-6 md:top-8 left-1/2 -translate-x-1/2 z-[2000] transition-all duration-300 w-[90%] max-w-4xl ${scrolled
+                    ? 'bg-primary/80 backdrop-blur-md border border-white/10 shadow-lg shadow-primary/20 rounded-full py-3 md:py-4 px-6 md:px-10'
+                    : 'bg-transparent py-4 md:py-6 px-4 md:px-8'
+                    }`}
             >
                 <div className="flex items-center justify-center relative">
                     {/* Desktop 3D Text Logo (Hidden on mobile) */}
@@ -43,9 +42,9 @@ const Navbar = () => {
                         </div>
                     </Link>
 
-                    {/* Mobile 3D Text Logo (Visible on mobile, absolute left for gap) */}
-                    <Link to="/" className="absolute left-0 top-1/2 -translate-y-1/2 md:hidden block">
-                        <div className="scale-110 origin-left">
+                    {/* Mobile 3D Text Logo (Visible on mobile, centered by flex parent) */}
+                    <Link to="/" className="md:hidden block">
+                        <div className="scale-110 origin-center">
                             <TextLogo3D />
                         </div>
                     </Link>
@@ -68,43 +67,29 @@ const Navbar = () => {
                             );
                         })}
                     </div>
-
-                    {/* Mobile Menu Button - Absolute positioned to right */}
-                    <div className="md:hidden absolute right-4">
-                        <button
-                            onClick={toggleMenu}
-                            className="p-2 text-slate-300 hover:text-white transition-colors"
-                        >
-                            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                        </button>
-                    </div>
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="fixed top-24 left-4 right-4 w-auto max-w-md mx-auto z-40 md:hidden bg-primary/95 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] overflow-y-auto"
-                    >
-                        <div className="px-6 py-8 space-y-4 flex flex-col items-center">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    to={link.path}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block text-lg font-medium text-slate-300 hover:text-secondary transition-colors"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {/* Mobile Bottom Navigation Bar */}
+            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[2000] md:hidden w-[90%] max-w-[280px]">
+                <div className="bg-primary/90 backdrop-blur-xl border border-white/10 shadow-lg shadow-primary/20 rounded-full py-2.5 px-6 flex items-center justify-between">
+                    {navLinks.map((link) => {
+                        const isActive = location.pathname === link.path;
+                        const Icon = link.icon;
+                        return (
+                            <Link
+                                key={link.name}
+                                to={link.path}
+                                className={`flex flex-col items-center gap-1 transition-all duration-300 ${isActive ? 'text-white scale-110' : 'text-slate-400 hover:text-slate-200'
+                                    }`}
+                            >
+                                <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5px]' : 'stroke-2'}`} />
+                                {isActive && <span className="absolute -bottom-2 w-1 h-1 bg-secondary rounded-full"></span>}
+                            </Link>
+                        );
+                    })}
+                </div>
+            </div>
         </>
     );
 };
