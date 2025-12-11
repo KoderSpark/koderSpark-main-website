@@ -71,12 +71,12 @@ const Work = () => {
     };
 
     return (
-        <div className="min-h-screen pt-28 pb-12 px-4 bg-primary relative overflow-hidden">
+        <div className="min-h-screen pt-28 pb-12 px-6 md:px-8 bg-primary relative overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
             <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl -z-10"></div>
 
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-5xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ const Work = () => {
                                         <h2 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2 group-hover:text-secondary transition-colors md:line-clamp-2">
                                             {project.title}
                                         </h2>
-                                        <p className="text-slate-300 md:text-slate-400 text-xs md:text-sm hidden md:block md:line-clamp-2">{project.description}</p>
+                                        <p className="hidden">{project.description}</p>
                                     </div>
                                 </div>
                             </Link>
