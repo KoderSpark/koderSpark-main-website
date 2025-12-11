@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ProjectCard from '../components/ProjectCard';
 
 const Work = () => {
     const containerVariants = {
@@ -100,30 +100,7 @@ const Work = () => {
                     className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
                 >
                     {currentItems.map((project) => (
-                        <motion.div key={project.id} variants={itemVariants}>
-                            <Link to={`/work/${project.id}`} className="block h-full">
-                                <div
-                                    className="group cursor-pointer rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-secondary/50 transition-all hover:shadow-[0_0_30px_rgba(56,189,248,0.15)] h-full aspect-square md:aspect-auto relative md:flex md:flex-col"
-                                >
-                                    <div className="absolute inset-0 h-full w-full md:relative md:h-64 overflow-hidden">
-                                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            loading="lazy"
-                                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 will-change-transform"
-                                        />
-                                    </div>
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent md:relative md:bg-none md:p-6 md:flex-grow z-20">
-
-                                        <h2 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2 group-hover:text-secondary transition-colors md:line-clamp-2">
-                                            {project.title}
-                                        </h2>
-                                        <p className="hidden">{project.description}</p>
-                                    </div>
-                                </div>
-                            </Link>
-                        </motion.div>
+                        <ProjectCard key={project.id} project={project} variants={itemVariants} />
                     ))}
                 </motion.div>
 
