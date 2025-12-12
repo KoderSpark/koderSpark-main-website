@@ -4,6 +4,8 @@ import { ArrowLeft, Upload, AlertCircle, Loader2 } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { careers } from '../data/careers';
+import SEO from '../components/SEO';
+import { generateJobPostingSchema } from '../utils/Schema';
 
 const JobApplication = () => {
     const navigate = useNavigate();
@@ -88,7 +90,13 @@ const JobApplication = () => {
     if (!job) return null;
 
     return (
-        <div className="min-h-screen pt-24 pb-12 px-4 bg-primary relative overflow-hidden">
+        <main className="min-h-screen pt-24 pb-12 px-4 bg-primary relative overflow-hidden">
+            <SEO
+                title={`Apply for ${job.title}`}
+                description={`Apply for the ${job.title} position at Koderspark. ${job.description.substring(0, 150)}...`}
+                canonical={`https://koderspark.com/careers/apply/${job.id}`}
+                jsonLd={generateJobPostingSchema(job)}
+            />
             <Toaster position="bottom-right" />
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
@@ -112,6 +120,7 @@ const JobApplication = () => {
                                 src={job.image}
                                 alt={job.title}
                                 className="absolute inset-0 w-full h-full object-cover"
+                                loading="lazy"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/50 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-[#0f172a]/50 lg:to-[#0f172a]"></div>
                             <div className="absolute bottom-0 left-0 p-6 lg:p-8 z-10">
@@ -248,7 +257,7 @@ const JobApplication = () => {
                     </div>
                 </motion.div>
             </div>
-        </div>
+        </main>
     );
 };
 

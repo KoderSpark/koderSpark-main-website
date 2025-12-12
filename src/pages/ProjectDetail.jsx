@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Star, Info } from 'lucide-react';
 import { projects } from '../data/projects';
+import SEO from '../components/SEO';
+import { generateProjectSchema } from '../utils/Schema';
 
 const ProjectDetail = () => {
     const { id } = useParams();
@@ -24,24 +26,37 @@ const ProjectDetail = () => {
     }
 
     return (
-        <div className="min-h-screen pt-24 pb-12 px-4 bg-primary relative overflow-hidden">
+        <main className="min-h-screen pt-24 pb-12 px-4 bg-primary relative overflow-hidden">
+            <SEO
+                title={project.title}
+                description={project.description.substring(0, 150)}
+                canonical={`https://koderspark.com/work/${project.id}`}
+                jsonLd={generateProjectSchema(project)}
+            />
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
             <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl -z-10"></div>
 
             <div className="max-w-6xl mx-auto">
-                <Link to="/work" className="inline-flex items-center text-slate-400 hover:text-white mb-8 transition-colors group">
-                    <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                    Back to Works
-                </Link>
+                <nav className="mb-8">
+                    <Link to="/work" className="inline-flex items-center text-slate-400 hover:text-white transition-colors group">
+                        <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                        Back to Works
+                    </Link>
+                </nav>
 
-                <motion.div
+                <motion.article
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
                     <div className="rounded-3xl overflow-hidden mb-12 border border-white/10 shadow-2xl">
-                        <img src={project.image} alt={project.title} className="w-full h-[400px] md:h-[600px] object-cover" />
+                        <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[400px] md:h-[600px] object-cover"
+                            loading="eager"
+                        />
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
@@ -82,7 +97,7 @@ const ProjectDetail = () => {
                     </div>
 
                     {/* Client Feedback Section - Full Width */}
-                    <div className="mt-16 border-t border-white/10 pt-16">
+                    <section className="mt-16 border-t border-white/10 pt-16">
                         <h3 className="text-3xl font-bold text-white mb-8">Client Feedback</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {project.reviews.map((review, index) => {
@@ -123,11 +138,11 @@ const ProjectDetail = () => {
                                 );
                             })}
                         </div>
-                    </div>
+                    </section>
 
-                </motion.div>
+                </motion.article>
             </div>
-        </div>
+        </main>
     );
 };
 

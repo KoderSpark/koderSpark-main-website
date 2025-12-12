@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code, Smartphone, Zap, ArrowRight, ArrowUp, CheckCircle2, Globe, Layers, Shield, Rocket } from 'lucide-react';
 import LogoLoader from '../components/LogoLoader';
+import SEO from '../components/SEO';
+import { generateWebSiteSchema } from '../utils/Schema';
 
 const heroImages = [
     "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2070&q=80",
@@ -60,7 +62,13 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-primary font-sans text-slate-200 selection:bg-secondary/30">
+        <main className="min-h-screen bg-primary font-sans text-slate-200 selection:bg-secondary/30">
+            <SEO
+                title="Expert Web & Mobile App Development"
+                description="Koderspark transforms complex challenges into elegant, high-performance digital solutions. Elevate your brand with our expert development and design."
+                canonical="https://koderspark.com/"
+                jsonLd={generateWebSiteSchema()}
+            />
             {/* Background Noise Texture */}
             <div className="fixed inset-0 opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
 
@@ -142,10 +150,10 @@ const Home = () => {
             {/* Services Section - Bento Grid */}
             <section className="min-h-screen flex flex-col justify-center py-20 px-6 lg:px-12 relative z-10">
                 <div className="max-w-7xl mx-auto w-full">
-                    <div className="mb-16">
+                    <header className="mb-16">
                         <h2 className="text-sm font-bold text-secondary uppercase tracking-widest mb-2">Our Expertise</h2>
                         <h3 className="text-4xl lg:text-5xl font-bold font-heading text-white">Comprehensive Digital Solutions</h3>
-                    </div>
+                    </header>
 
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]"
@@ -155,7 +163,7 @@ const Home = () => {
                         viewport={{ once: true, margin: "-100px" }}
                     >
                         {/* Web Dev - Large Card */}
-                        <motion.div
+                        <motion.article
                             variants={fadeInUp}
                             className="md:col-span-2 rounded-3xl bg-surface border border-white/5 overflow-hidden relative group"
                         >
@@ -164,6 +172,7 @@ const Home = () => {
                                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
                                 alt="Web Development"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
                             />
                             <div className="absolute bottom-0 left-0 p-8 z-20">
                                 <div className="w-12 h-12 rounded-2xl bg-icon1/20 flex items-center justify-center mb-4 backdrop-blur-md border border-icon1/20">
@@ -177,10 +186,10 @@ const Home = () => {
                                     ))}
                                 </div>
                             </div>
-                        </motion.div>
+                        </motion.article>
 
                         {/* App Dev - Tall Card */}
-                        <motion.div
+                        <motion.article
                             variants={fadeInUp}
                             className="md:row-span-2 rounded-3xl bg-surface border border-white/5 overflow-hidden relative group"
                         >
@@ -189,6 +198,7 @@ const Home = () => {
                                 src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
                                 alt="App Development"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
                             />
                             <div className="absolute bottom-0 left-0 p-8 z-20">
                                 <div className="w-12 h-12 rounded-2xl bg-icon2/20 flex items-center justify-center mb-4 backdrop-blur-md border border-icon2/20">
@@ -202,7 +212,7 @@ const Home = () => {
                                     ))}
                                 </div>
                             </div>
-                        </motion.div>
+                        </motion.article>
 
                         {/* Web Dev Info - Standard Card */}
                         <motion.div
@@ -272,9 +282,9 @@ const Home = () => {
             </section>
 
             {/* About Section - Asymmetric Layout */}
-            < section className="min-h-screen flex items-center py-20 px-6 lg:px-12 bg-surface relative overflow-hidden" >
+            <section className="min-h-screen flex items-center py-20 px-6 lg:px-12 bg-surface relative overflow-hidden">
                 {/* Decorative Elements */}
-                < div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/50 to-transparent pointer-events-none" ></div >
+                <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/50 to-transparent pointer-events-none"></div>
 
                 <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div className="lg:col-span-7 relative">
@@ -288,6 +298,7 @@ const Home = () => {
                                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
                                 alt="Team working"
                                 className="w-full h-auto"
+                                loading="lazy"
                             />
                         </motion.div>
                         {/* Floating Badge */}
@@ -334,7 +345,7 @@ const Home = () => {
 
                     </motion.div>
                 </div>
-            </section >
+            </section>
 
             {/* CTA Section */}
             <section className="min-h-screen flex items-center justify-center px-6 lg:px-12 relative overflow-hidden py-20">
@@ -387,6 +398,7 @@ const Home = () => {
                                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
                                 alt="Team Collaboration"
                                 className="w-full aspect-[4/5] lg:aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
                             />
 
                             {/* Floating Benefits Card */}
@@ -430,7 +442,7 @@ const Home = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div >
+        </main>
     );
 };
 

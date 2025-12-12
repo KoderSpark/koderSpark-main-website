@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { Send, Mail, MapPin, Phone, ArrowRight, Loader2, Copy } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -54,7 +55,12 @@ const Contact = () => {
         }
     };
     return (
-        <div className="min-h-screen pt-28 pb-12 px-4 bg-primary relative overflow-hidden">
+        <main className="min-h-screen pt-28 pb-12 px-4 bg-primary relative overflow-hidden">
+            <SEO
+                title="Contact Us"
+                description="Get in touch with Koderspark. We'd love to hear about your project and how we can help you build something extraordinary."
+                canonical="https://koderspark.com/contact"
+            />
             <Toaster position="bottom-right" reverseOrder={false} />
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
@@ -68,10 +74,12 @@ const Contact = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-sm font-bold text-secondary uppercase tracking-widest mb-4">Get in Touch</h2>
-                        <h1 className="text-5xl md:text-6xl font-bold font-heading text-white mb-8 leading-tight">
-                            Let's Build Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Extraordinary</span>
-                        </h1>
+                        <header>
+                            <h2 className="text-sm font-bold text-secondary uppercase tracking-widest mb-4">Get in Touch</h2>
+                            <h1 className="text-5xl md:text-6xl font-bold font-heading text-white mb-8 leading-tight">
+                                Let's Build Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Extraordinary</span>
+                            </h1>
+                        </header>
                         <p className="text-slate-300 text-lg mb-12 leading-relaxed max-w-lg">
                             Have a project in mind? We'd love to hear from you. Send us a message and we'll get back to you shortly to discuss how we can bring your vision to life.
                         </p>
@@ -193,7 +201,7 @@ const Contact = () => {
                         </div>
 
                         {/* Contact Cards */}
-                        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <address className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 not-italic">
                             {[
                                 { icon: Mail, title: "Email", value: "support@koderspark.in", color: "text-secondary", bg: "bg-secondary/10", link: "mailto:support@koderspark.in" },
                                 { icon: Phone, title: "WhatsApp", value: "+91 98662 93371", color: "text-icon2", bg: "bg-icon2/10", link: "https://wa.me/919866293371" },
@@ -225,11 +233,11 @@ const Contact = () => {
                                     </div>
                                 </motion.a>
                             ))}
-                        </div>
+                        </address>
                     </motion.div>
                 </div>
             </div>
-        </div>
+        </main>
     );
 };
 

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { projects } from '../data/projects';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProjectCard from '../components/ProjectCard';
+import SEO from '../components/SEO';
 
 const Work = () => {
     const containerVariants = {
@@ -71,26 +72,32 @@ const Work = () => {
     };
 
     return (
-        <div className="min-h-screen pt-28 pb-12 px-6 md:px-8 bg-primary relative overflow-hidden">
+        <main className="min-h-screen pt-28 pb-12 px-6 md:px-8 bg-primary relative overflow-hidden">
+            <SEO
+                title="Our Work | Portfolio"
+                description="Explore our portfolio of web and mobile application projects. See how we help businesses transform their digital presence."
+                canonical="https://koderspark.com/work"
+            />
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
             <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl -z-10"></div>
 
             <div className="max-w-5xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-sm font-bold text-secondary uppercase tracking-widest mb-4">Portfolio</h2>
-                    <h1 className="text-5xl md:text-6xl font-bold font-heading text-white mb-6">
-                        Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Works</span>
-                    </h1>
-                    <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                        Explore a selection of our recent projects, showcasing our expertise in web development, mobile apps, and digital design.
-                    </p>
-                </motion.div>
+                <header className="text-center mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <h2 className="text-sm font-bold text-secondary uppercase tracking-widest mb-4">Portfolio</h2>
+                        <h1 className="text-5xl md:text-6xl font-bold font-heading text-white mb-6">
+                            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Works</span>
+                        </h1>
+                        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                            Explore a selection of our recent projects, showcasing our expertise in web development, mobile apps, and digital design.
+                        </p>
+                    </motion.div>
+                </header>
 
                 <motion.div
                     variants={containerVariants}
@@ -114,6 +121,7 @@ const Work = () => {
                                 ? 'bg-white/5 text-slate-600 cursor-not-allowed'
                                 : 'bg-white/10 text-white hover:bg-secondary hover:text-primary hover:border-secondary'
                                 }`}
+                            aria-label="Previous Page"
                         >
                             <ChevronLeft className="w-6 h-6" />
                         </button>
@@ -129,13 +137,14 @@ const Work = () => {
                                 ? 'bg-white/5 text-slate-600 cursor-not-allowed'
                                 : 'bg-white/10 text-white hover:bg-secondary hover:text-primary hover:border-secondary'
                                 }`}
+                            aria-label="Next Page"
                         >
                             <ChevronRight className="w-6 h-6" />
                         </button>
                     </div>
                 )}
             </div>
-        </div>
+        </main>
     );
 };
 
