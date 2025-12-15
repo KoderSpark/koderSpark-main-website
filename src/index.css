@@ -70,3 +70,20 @@ html {
   animation: shine 3s linear infinite;
   font-weight: 600;
 }
+
+.animate-shine-white {
+  background: linear-gradient(
+    to right,
+    #ffffff 20%,
+    #f8fafc 40%,
+    #cbd5e1 50%, 
+    #f8fafc 60%,
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+  font-weight: 700;
+}

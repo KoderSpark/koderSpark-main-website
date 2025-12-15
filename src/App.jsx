@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -10,6 +11,7 @@ import Work from './pages/Work';
 import ProjectDetail from './pages/ProjectDetail';
 import Careers from './pages/Careers';
 import JobApplication from './pages/JobApplication';
+import Announcements from './pages/Announcements';
 
 import ScrollToTop from './components/ScrollToTop';
 import GradualBlur from './components/GradualBlur';
@@ -56,6 +58,7 @@ function App() {
                         <Route path="/careers" element={<Careers />} />
                         <Route path="/careers/apply/:id" element={<JobApplication />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/announcements" element={<Announcements />} />
                     </Routes>
                 </main>
                 <Footer />
@@ -68,6 +71,13 @@ function App() {
                     curve="bezier"
                     exponential={true}
                     opacity={1}
+                />
+                <Toaster
+                    position="bottom-right"
+                    reverseOrder={false}
+                    containerStyle={{
+                        zIndex: 99999,
+                    }}
                 />
             </div>
         </Router>
