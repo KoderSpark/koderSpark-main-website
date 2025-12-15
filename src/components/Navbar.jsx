@@ -44,8 +44,8 @@ const Navbar = () => {
                         </div>
                     </Link>
 
-                    {/* Mobile 3D Text Logo (Visible on mobile, centered by flex parent) */}
-                    <Link to="/" className="md:hidden block absolute left-1/2 -translate-x-1/2">
+                    {/* Mobile 3D Text Logo (Visible on mobile, centered) */}
+                    <Link to="/" className="md:hidden block mx-auto relative">
                         <div className="scale-100 origin-center">
                             <TextLogo3D />
                         </div>
