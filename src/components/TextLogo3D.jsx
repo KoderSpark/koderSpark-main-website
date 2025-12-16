@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Text3D, Center, Environment } from '@react-three/drei';
+import { Text3D, Center } from '@react-three/drei';
 import * as THREE from 'three';
 
 const ShinyText = () => {
@@ -20,7 +20,7 @@ const ShinyText = () => {
             <Center>
                 <Text3D
                     ref={textRef}
-                    font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
+                    font="/fonts/helvetiker_bold.typeface.json"
                     size={1.2}
                     height={0.2}
                     curveSegments={12}
@@ -60,7 +60,7 @@ const TextLogo3D = () => {
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
                 <ambientLight intensity={0.5} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
-                <Environment preset="city" />
+                {/* <Environment preset="city" /> Removing environment to avoid HDR fetch errors due to network */}
                 <ShinyText />
             </Canvas>
         </div>
