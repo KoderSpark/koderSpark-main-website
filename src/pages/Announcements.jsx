@@ -33,11 +33,18 @@ const Announcements = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        role: 'Job Seeker'
     });
     const [showFallback, setShowFallback] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    // PLACEHOLDER: Replace with your actual Google Apps Script Web App URL
+    // Tutorial to create:
+    // 1. Create a Google Sheet
+    // 2. Extensions > Apps Script
+    // 3. Paste code to handle POST request
+    // 4. Deploy as Web App > Access: Anyone
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNqNEigPq88e4vgBBjLJuAGhzEUg5e0zwyjK5eQavYw_O_E9c_wWD9nJg_eKGbUh-c/exec';
 
     const handleJoinWaitlist = async (e) => {
@@ -72,7 +79,7 @@ const Announcements = () => {
             });
 
             toast.success('You have been added to the waitlist!');
-            setFormData({ name: '', email: '', phone: '' });
+            setFormData({ name: '', email: '', phone: '', role: 'Job Seeker' });
             setShowFallback(false);
 
         } catch (error) {
@@ -114,7 +121,7 @@ const Announcements = () => {
                         <span>ANNOUNCEMENT (Website Section)</span>
                     </div>
 
-                    <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-secondary to-accent bg-clip-text text-transparent py-2">
+                    <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-secondary to-accent bg-clip-text text-transparent">
                         Something New Is <br /> Launching Soon
                     </h1>
 
@@ -240,7 +247,7 @@ const Announcements = () => {
                                         'Free profile verification',
                                         'Eligibility for pre-screened opportunities',
                                         'Higher visibility to recruiters',
-                                        'No mass applying — companies reach out',
+                                        'No mass applying : companies reach out',
                                         'Early access to opportunities'
                                     ].map((benefit, i) => (
                                         <li key={i} className="flex items-start gap-3 text-slate-300">
@@ -332,6 +339,38 @@ const Announcements = () => {
                                 />
                             </div>
 
+                            <div>
+                                <label className="text-sm text-slate-400 ml-1 mb-1 block">I am a</label>
+                                <div className="flex gap-4">
+                                    <label className="flex-1 cursor-pointer group">
+                                        <input
+                                            type="radio"
+                                            name="role"
+                                            value="Job Seeker"
+                                            checked={formData.role === 'Job Seeker'}
+                                            onChange={handleInputChange}
+                                            className="hidden peer"
+                                        />
+                                        <div className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-slate-400 peer-checked:bg-accent/20 peer-checked:border-accent peer-checked:text-white transition-all text-center hover:bg-white/5">
+                                            Job Seeker
+                                        </div>
+                                    </label>
+                                    <label className="flex-1 cursor-pointer group">
+                                        <input
+                                            type="radio"
+                                            name="role"
+                                            value="Recruiter"
+                                            checked={formData.role === 'Recruiter'}
+                                            onChange={handleInputChange}
+                                            className="hidden peer"
+                                        />
+                                        <div className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-slate-400 peer-checked:bg-secondary/20 peer-checked:border-secondary peer-checked:text-white transition-all text-center hover:bg-white/5">
+                                            Recruiter
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
@@ -356,7 +395,7 @@ const Announcements = () => {
                                     Your network or browser is blocking the connection to Google Sheets. Please submit via email instead:
                                 </p>
                                 <a
-                                    href={`mailto:support@koderspark.in?subject=Join Waitlist: ${formData.name}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0A%0D%0APlease add me to the waitlist.`}
+                                    href={`mailto:support@koderspark.in?subject=Join Waitlist: ${formData.name}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0ARole: ${formData.role}%0D%0A%0D%0APlease add me to the waitlist.`}
                                     className="block w-full text-center py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-colors"
                                 >
                                     Submit via Email
