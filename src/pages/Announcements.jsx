@@ -100,7 +100,7 @@ const Announcements = () => {
     };
 
     return (
-        <div className="min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-primary relative overflow-hidden">
+        <div className="min-h-screen pt-32 pb-12 px-4 sm:px-6 lg:px-8 bg-primary relative overflow-hidden">
             {/* Background Decor */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-3xl" />
@@ -121,8 +121,8 @@ const Announcements = () => {
                         <span>ANNOUNCEMENT (Website Section)</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-secondary to-accent bg-clip-text text-transparent">
-                        Something New Is <br /> Launching Soon
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight pb-2 bg-gradient-to-r from-white via-secondary to-accent bg-clip-text text-transparent">
+                        Something New Is <br className="hidden md:block" /> Launching Soon
                     </h1>
 
                     <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed">
