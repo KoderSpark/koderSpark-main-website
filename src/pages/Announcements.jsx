@@ -35,7 +35,15 @@ const Announcements = () => {
         name: '',
         email: '',
         phone: '',
-        role: 'Job Seeker'
+        role: 'Job Seeker',
+        // Common
+        linkedin: '',
+        // Recruiter
+        companyName: '',
+        website: '',
+        // Seeker
+        status: 'Student',
+        collegeName: ''
     });
     const [showFallback, setShowFallback] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -109,7 +117,19 @@ const Announcements = () => {
             });
 
             toast.success('You have been added to the waitlist!');
-            setFormData({ name: '', email: '', phone: '', role: 'Job Seeker' });
+            toast.success('You have been added to the waitlist!');
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                role: 'Job Seeker',
+                linkedin: '',
+                companyName: '',
+                website: '',
+                status: 'Student',
+                collegeName: ''
+            });
+            setShowFallback(false);
             setShowFallback(false);
 
         } catch (error) {
@@ -333,42 +353,7 @@ const Announcements = () => {
                         <p className="text-slate-400 mb-8">Early access. Limited slots.</p>
 
                         <form onSubmit={handleJoinWaitlist} className="space-y-4 text-left">
-                            <div>
-                                <label className="text-sm text-slate-400 ml-1 mb-1 block">Full Name</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    placeholder="John Doe"
-                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="text-sm text-slate-400 ml-1 mb-1 block">Email Address</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    placeholder="john@example.com"
-                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="text-sm text-slate-400 ml-1 mb-1 block">Phone Number</label>
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
-                                    placeholder="+91 98765 43210"
-                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
-                                />
-                            </div>
-
+                            {/* 1. Role Selection (First) */}
                             <div>
                                 <label className="text-sm text-slate-400 ml-1 mb-1 block">I am a</label>
                                 <div className="flex gap-4">
@@ -401,6 +386,154 @@ const Announcements = () => {
                                 </div>
                             </div>
 
+                            {/* 2. Common Contact Info */}
+                            <div>
+                                <label className="text-sm text-slate-400 ml-1 mb-1 block">Full Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                    placeholder="John Doe"
+                                    required
+                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="text-sm text-slate-400 ml-1 mb-1 block">Email Address</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    placeholder="john@example.com"
+                                    required
+                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="text-sm text-slate-400 ml-1 mb-1 block">Phone Number</label>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleInputChange}
+                                    placeholder="+91 98765 43210"
+                                    required
+                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                                />
+                            </div>
+
+                            {/* 3. Dynamic Fields based on Role */}
+                            <AnimatePresence mode="wait">
+                                {formData.role === 'Recruiter' ? (
+                                    <motion.div
+                                        key="recruiter-fields"
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="space-y-4"
+                                    >
+                                        <div>
+                                            <label className="text-sm text-slate-400 ml-1 mb-1 block">Company Name</label>
+                                            <input
+                                                type="text"
+                                                name="companyName"
+                                                value={formData.companyName}
+                                                onChange={handleInputChange}
+                                                placeholder="Tech Solutions Inc."
+                                                required
+                                                className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-sm text-slate-400 ml-1 mb-1 block">Company Website <span className="text-slate-600">(Optional)</span></label>
+                                            <input
+                                                type="url"
+                                                name="website"
+                                                value={formData.website}
+                                                onChange={handleInputChange}
+                                                placeholder="https://example.com"
+                                                className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                                            />
+                                        </div>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="seeker-fields"
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="space-y-4"
+                                    >
+                                        <div>
+                                            <label className="text-sm text-slate-400 ml-1 mb-1 block">Current Status</label>
+                                            <div className="flex gap-4">
+                                                <label className="flex-1 cursor-pointer group">
+                                                    <input
+                                                        type="radio"
+                                                        name="status"
+                                                        value="Student"
+                                                        checked={formData.status === 'Student'}
+                                                        onChange={handleInputChange}
+                                                        className="hidden peer"
+                                                    />
+                                                    <div className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-slate-400 peer-checked:bg-white/10 peer-checked:border-white/30 peer-checked:text-white transition-all text-center hover:bg-white/5">
+                                                        Student
+                                                    </div>
+                                                </label>
+                                                <label className="flex-1 cursor-pointer group">
+                                                    <input
+                                                        type="radio"
+                                                        name="status"
+                                                        value="Graduated"
+                                                        checked={formData.status === 'Graduated'}
+                                                        onChange={handleInputChange}
+                                                        className="hidden peer"
+                                                    />
+                                                    <div className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-slate-400 peer-checked:bg-white/10 peer-checked:border-white/30 peer-checked:text-white transition-all text-center hover:bg-white/5">
+                                                        Graduated
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        {formData.status === 'Student' && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: -10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                            >
+                                                <label className="text-sm text-slate-400 ml-1 mb-1 block">College Name</label>
+                                                <input
+                                                    type="text"
+                                                    name="collegeName"
+                                                    value={formData.collegeName}
+                                                    onChange={handleInputChange}
+                                                    placeholder="University of Technology"
+                                                    required
+                                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                                                />
+                                            </motion.div>
+                                        )}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
+                            {/* 4. Common Optional - LinkedIn */}
+                            <div>
+                                <label className="text-sm text-slate-400 ml-1 mb-1 block">LinkedIn URL <span className="text-slate-600">(Optional)</span></label>
+                                <input
+                                    type="url"
+                                    name="linkedin"
+                                    value={formData.linkedin}
+                                    onChange={handleInputChange}
+                                    placeholder="https://linkedin.com/in/username"
+                                    className="w-full px-5 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                                />
+                            </div>
+
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
@@ -425,7 +558,7 @@ const Announcements = () => {
                                     Your network or browser is blocking the connection to Google Sheets. Please submit via email instead:
                                 </p>
                                 <a
-                                    href={`mailto:support@koderspark.in?subject=Join Waitlist: ${formData.name}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0ARole: ${formData.role}%0D%0A%0D%0APlease add me to the waitlist.`}
+                                    href={`mailto:support@koderspark.in?subject=Join Waitlist: ${formData.name}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0ARole: ${formData.role}%0D%0ALinkedIn: ${formData.linkedin}%0D%0A%0D%0APlease add me to the waitlist.`}
                                     className="block w-full text-center py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-colors"
                                 >
                                     Submit via Email

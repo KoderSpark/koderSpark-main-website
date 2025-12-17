@@ -73,6 +73,13 @@ function App() {
                     exponential={true}
                     opacity={1}
                 />
+                <Toaster
+                    position="bottom-right"
+                    reverseOrder={false}
+                    containerStyle={{
+                        zIndex: 99999,
+                    }}
+                />
             </div>
         </Router>
     );
