@@ -7,41 +7,41 @@ import toast from 'react-hot-toast';
 const phases = [
     {
         number: "01",
-        title: "Coding Foundations",
-        description: "Build strong fundamentals and developer mindset.",
+        title: "Frontend Development",
+        description: "Master the basics of web development with modern UI/UX principles.",
         icon: Code,
-        skills: ["HTML5", "CSS3 (Flexbox, Grid)", "JavaScript (ES6+)", "Git & GitHub"],
-        projects: ["Portfolio Website", "Business Landing Page", "JS Mini Apps"],
+        skills: ["HTML5 & CSS3", "JavaScript (ES6+)", "React.js", "Tailwind CSS"],
+        projects: ["Personal Portfolio", "Business Landing Page", "Interactive Dashboards"],
         color: "blue",
         alignment: "left"
     },
     {
         number: "02",
-        title: "Full Stack Development",
-        description: "Make learners capable of building complete applications end-to-end.",
+        title: "Backend Development",
+        description: "Build robust, scalable server-side applications and APIs.",
         icon: Layers,
-        skills: ["React.js", "Node.js + Express.js", "MongoDB", "Rest APIs", "Deployment"],
-        projects: ["Full Stack Blog", "Auth System", "Dashboard App"],
+        skills: ["Node.js", "Express.js", "MongoDB", "RESTful APIs"],
+        projects: ["API Development", "Database Architecture", "Auth Systems"],
         color: "purple",
         alignment: "right"
     },
     {
         number: "03",
-        title: "Industry Readiness",
-        description: "Make learners professional, job-ready, and team-ready.",
+        title: "Advanced Full Stack",
+        description: "Master production-grade features like payments and deployment.",
         icon: Briefcase,
-        skills: ["Clean Code", "API Integrations", "Optimization", "Team Workflows"],
-        projects: ["Capstone (E-Com, SaaS)", "GitHub PR/Issues"],
+        skills: ["Authentication", "Payment Gateways", "Cloud Deployment", "Security"],
+        projects: ["E-commerce Platform", "SaaS Application", "CI/CD Pipelines"],
         color: "emerald",
         alignment: "left"
     },
     {
         number: "04",
-        title: "Vibe Coding + AI",
-        description: "Convert learners from developers → earners.",
+        title: "Generative AI Engineering",
+        description: "Integrate cutting-edge AI capabilities into your applications.",
         icon: Zap,
-        skills: ["ChatGPT, Cursor, Copilot", "Prompt Engineering", "Rapid MVP"],
-        projects: ["Real Client Project", "Freelance Setup", "Cold Outreach"],
+        skills: ["LLM Integration", "Prompt Engineering", "AI Aided Dev", "RAG Pipelines"],
+        projects: ["AI-Powered Web Apps", "Custom Chatbots", "AI Content Generators"],
         color: "amber",
         alignment: "right"
     }

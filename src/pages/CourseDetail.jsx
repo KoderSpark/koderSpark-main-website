@@ -1,38 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ChevronRight, Zap, Briefcase, Code, Award, Target, Rocket, Sparkles, Calendar, Laptop, Building2, Users, Banknote, TrendingUp, Wallet, Layout, DollarSign } from 'lucide-react';
 import SEO from '../components/SEO';
 import { courses } from '../data/courses';
 
+const offlineImages = [
+    "/workspace_placeholder.png",
+    "/offline_mentorship.png",
+    "/developer_community.png"
+];
+
 const CourseDetail = () => {
     const { id } = useParams();
     const course = courses.find(c => c.id === id);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [id]);
-
-    if (!course) {
-        return <Navigate to="/program" replace />;
-    }
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-
-    const offlineImages = [
-        "/workspace_placeholder.png",
-        "/offline_mentorship.png",
-        "/developer_community.png"
-    ];
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -44,16 +26,15 @@ const CourseDetail = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.5
-            }
-        }
-    };
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [id]);
+
+    if (!course) {
+        return <Navigate to="/program" replace />;
+    }
+
+
 
     return (
         <main className="min-h-screen pt-28 pb-20 px-4 bg-primary relative overflow-hidden">
@@ -69,8 +50,8 @@ const CourseDetail = () => {
 
             <div className="max-w-6xl mx-auto">
                 {/* Back Link */}
-                <Link to="/program" className="inline-flex items-center text-slate-400 hover:text-white mb-8 transition-colors">
-                    <ChevronRight className="w-4 h-4 rotate-180 mr-1" /> Back to Programs
+                <Link to="/" className="inline-flex items-center text-slate-400 hover:text-white mb-8 transition-colors">
+                    <ChevronRight className="w-4 h-4 rotate-180 mr-1" /> Back to Home
                 </Link>
 
                 {/* Hero Section */}
@@ -154,7 +135,7 @@ const CourseDetail = () => {
                         <p className="text-slate-400 text-sm md:text-base">From Beginner to Professional Vibe Coder</p>
                     </div>
 
-                    <div className="hidden md:block relative max-w-4xl mx-auto h-[400px] flex items-center justify-center">
+                    <div className="hidden md:flex relative max-w-4xl mx-auto h-[400px] items-center justify-center">
                         {/* Central Line */}
                         <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-0.5 bg-white/10 overflow-hidden rounded-full">
                             <motion.div
@@ -315,68 +296,63 @@ const CourseDetail = () => {
                     </div>
                 </div>
 
-                {/* Client Project Section */}
-                {course.clientProject && (
-                    <div className="mb-20">
-                        <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/30 rounded-3xl p-5 md:p-12 overflow-hidden relative">
-                            {/* Background Glow */}
-                            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-indigo-500/20 rounded-full blur-[100px] -z-10"></div>
+                {/* Additional Modules Section */}
+                {course.additionalModules && (
+                    <div className="mb-24 relative">
 
-                            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                                <div>
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-sm font-bold mb-4 md:mb-6">
-                                        <Briefcase className="w-4 h-4" /> Real World Experience
-                                    </div>
-                                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">{course.clientProject.title}</h2>
-                                    <p className="text-slate-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
-                                        {course.clientProject.description}
-                                    </p>
 
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-white font-semibold mb-2">Requirements:</h4>
-                                            <ul className="text-slate-400 text-sm space-y-1 list-disc pl-5">
-                                                <li>Complete all mandatory projects</li>
-                                                <li>Clear technical evaluations</li>
-                                                <li>Pass client-communication mock interview</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="bg-black/30 backdrop-blur-sm rounded-xl p-5 md:p-6 border border-white/10">
-                                    <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                                        <Award className="w-5 h-5 text-yellow-400" /> Revenue Model Example
-                                    </h3>
-                                    <div className="space-y-3 mb-6">
-                                        <div className="flex justify-between items-center p-3 rounded bg-white/5">
-                                            <span className="text-slate-300 text-sm">Client Pays</span>
-                                            <span className="text-white font-bold text-sm">{course.clientProject.revenueModel.clientPays}</span>
-                                        </div>
-                                        <div className="flex justify-between items-center p-3 rounded bg-emerald-500/10 border border-emerald-500/20">
-                                            <span className="text-emerald-300 text-sm">You Earn</span>
-                                            <span className="text-emerald-400 font-bold text-sm">{course.clientProject.revenueModel.studentEarns}</span>
-                                        </div>
-                                        <div className="flex justify-between items-center p-3 rounded bg-white/5">
-                                            <span className="text-slate-300 text-sm">VibeStack (Fullstack + GenAI) Fee</span>
-                                            <span className="text-slate-400 text-sm">{course.clientProject.revenueModel.vibeStackEarns}</span>
-                                        </div>
-                                    </div>
-                                    <div className="text-center">
-                                        <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Project Examples</p>
-                                        <div className="flex flex-wrap gap-2 justify-center">
-                                            {course.clientProject.examples.slice(0, 3).map((ex, i) => (
-                                                <span key={i} className="px-2 py-1 bg-white/5 rounded text-[10px] md:text-xs text-slate-300">
-                                                    {ex}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="max-w-5xl mx-auto">
+                            <div className="text-center mb-16">
+                                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                                    {course.additionalModules.title}
+                                </h2>
+                                <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                                    {course.additionalModules.description}
+                                </p>
                             </div>
+
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {course.additionalModules.modules.map((mod, index) => (
+                                    <div key={index} className="group relative">
+
+
+                                        <div className="relative h-full bg-surface border border-white/10 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-white/20 transition-colors">
+                                            {/* Decorative Background Icon */}
+                                            <Sparkles className="absolute -right-4 -bottom-4 w-24 h-24 text-white/5 rotate-12 group-hover:scale-110 transition-transform duration-500" />
+
+                                            <div className="flex items-start gap-4 md:gap-6 relative z-10">
+                                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                                    <div className="text-secondary font-bold text-lg md:text-xl">0{index + 1}</div>
+                                                </div>
+
+                                                <div className="flex-1">
+                                                    <h4 className="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">{mod}</h4>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="px-2 py-1 rounded text-[10px] uppercase font-bold tracking-wider bg-white/5 text-slate-400 border border-white/5">
+                                                            Extension
+                                                        </span>
+                                                        <span className="text-xs text-slate-500">Available post-completion</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="self-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                                                    <ArrowRight className="w-5 h-5 text-secondary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <p className="text-center mt-10 text-sm text-slate-500 italic flex items-center justify-center gap-2">
+                                <Sparkles className="w-4 h-4" />
+                                {course.additionalModules.note}
+                            </p>
                         </div>
                     </div>
                 )}
+
+
 
 
                 {/* Offline Workspace Environment Section */}
@@ -557,114 +533,50 @@ const CourseDetail = () => {
                     </div>
                 </div>
 
-                {/* Pricing / Fee Section */}
+                {/* Plans & Pricing Section */}
                 <div className="mb-24">
-                    <div className="max-w-5xl mx-auto">
-                        <div className="relative group">
-                            {/* Gradient Border/Glow Effect */}
-                            <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-3xl blur opacity-20 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                                Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Path</span>
+                            </h2>
+                            <p className="text-slate-400 text-lg">Select the plan that fits your career goals.</p>
+                        </div>
 
-                            <div className="relative bg-slate-950 ring-1 ring-white/10 rounded-2xl p-5 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8 overflow-hidden">
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {course.plans?.map((plan, index) => (
+                                <div key={index} className={`relative p-8 rounded-3xl border ${plan.name.includes('Premium') ? 'bg-white/10 border-secondary ring-1 ring-secondary shadow-2xl scale-105 z-10' : 'bg-surface border-white/10'} flex flex-col transition-all duration-300 hover:border-white/20`}>
+                                    {plan.name.includes('Premium') && (
+                                        <div className="absolute top-0 right-0 bg-secondary text-primary text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">
+                                            Most Popular
+                                        </div>
+                                    )}
+                                    <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                                    <div className="text-4xl font-bold text-white mb-6 tracking-tight">{plan.price}</div>
 
-                                {/* Background Decorative Elements */}
-                                <div className="absolute top-0 right-0 p-12 opacity-5 transform translate-x-10 -translate-y-10 pointer-events-none">
-                                    <Sparkles className="w-64 h-64 text-yellow-500" />
+                                    <div className="flex-1 mb-8">
+                                        <ul className="space-y-4">
+                                            {plan.features.map((feature, i) => (
+                                                <li key={i} className="flex items-start gap-3 text-slate-300 text-sm">
+                                                    <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${plan.name.includes('Premium') ? 'text-secondary' : 'text-emerald-500'}`} />
+                                                    <span className="leading-tight">{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <Link
+                                        to="/contact"
+                                        state={{ message: `I am interested in the ${plan.name} for ${course.title}.` }}
+                                        className={`w-full py-4 rounded-xl font-bold text-center transition-all duration-300 ${plan.name.includes('Premium')
+                                            ? 'bg-gradient-to-r from-secondary to-accent text-white hover:shadow-lg hover:shadow-secondary/25'
+                                            : 'bg-white/10 text-white hover:bg-white/20'
+                                            }`}
+                                    >
+                                        Choose {plan.name.split(' ')[0]}
+                                    </Link>
                                 </div>
-                                <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-[80px] -z-10"></div>
-
-                                <div className="flex-1 z-10 relative">
-                                    <div className="inline-flex items-center gap-2 mb-4 md:mb-6 px-4 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 text-xs md:text-sm font-bold border border-yellow-500/20 uppercase tracking-widest">
-                                        <Zap className="w-3 h-3 md:w-4 md:h-4 fill-current" /> Limited Time Offer
-                                    </div>
-
-                                    <h3 className="text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6">
-                                        Invest in Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500">Future</span>
-                                    </h3>
-
-                                    <p className="text-slate-400 text-sm md:text-base mb-6 max-w-xl leading-relaxed">
-                                        Don't just learn to code. Learn to earn. Secure your spot in the VibeStack (Fullstack + GenAI) program today with our exclusive early bird pricing.
-                                        <br />
-                                        <span className="text-white font-semibold mt-2 block">Choose your preferred learning mode below.</span>
-                                    </p>
-
-                                    <div className="mb-4 hidden md:block">
-                                        <div className="flex items-center gap-3 text-slate-300 text-sm mb-1.5">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Full 4-Month Program
-                                        </div>
-                                        <div className="flex items-center gap-3 text-slate-300 text-sm mb-1.5">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Guaranteed Client Project
-                                        </div>
-                                        <div className="flex items-center gap-3 text-slate-300 text-sm mb-1.5">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Lifetime Community Access
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="z-10 flex-shrink-0 w-full lg:w-auto flex flex-col gap-4">
-                                    <div className="flex flex-col md:flex-row gap-3 md:gap-4">
-                                        {/* Online Option */}
-                                        <div className="p-4 md:p-5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm flex-1 min-w-[240px]">
-                                            <div className="text-center mb-3">
-                                                <h4 className="text-white font-bold text-lg mb-0.5">Online</h4>
-                                                <p className="text-slate-400 text-[10px]">Learn from anywhere</p>
-                                            </div>
-
-                                            <div className="text-center mb-4">
-                                                <div className="text-slate-500 line-through text-xs">{course.pricing?.online?.actualFee}</div>
-                                                <div className="text-3xl font-bold text-white tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500">
-                                                    {course.pricing?.online?.earlyBirdFee}
-                                                </div>
-                                                <div className="text-[10px] text-green-400 font-bold uppercase tracking-wider mt-0.5">{course.pricing?.discountNote}</div>
-                                            </div>
-
-                                            <Link
-                                                to="/contact"
-                                                state={{ message: `I want to join the ${course.title} Online program at ${course.pricing?.online?.earlyBirdFee}.` }}
-                                                className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-all duration-300 border border-white/10"
-                                            >
-                                                Select Online
-                                            </Link>
-                                            <div className="mt-3 pt-3 border-t border-white/5 text-center">
-                                                <p className="text-[10px] text-slate-400">
-                                                    <span className="text-emerald-400 font-bold">EMI Options Available</span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Offline Option */}
-                                        <div className="p-4 md:p-5 rounded-xl bg-gradient-to-b from-yellow-500/20 to-orange-500/10 border border-yellow-500/30 backdrop-blur-sm flex-1 min-w-[240px] relative overflow-hidden">
-
-                                            <div className="text-center mb-3">
-                                                <h4 className="text-white font-bold text-lg mb-0.5">Offline</h4>
-                                                <p className="text-slate-400 text-[10px]">In-person mentorship</p>
-                                                <p className="text-emerald-400 text-[10px] font-bold mt-1 uppercase tracking-wider">Starting Next Month</p>
-                                            </div>
-
-                                            <div className="text-center mb-4">
-                                                <div className="text-3xl font-bold text-white tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500">
-                                                    ₹30,000
-                                                </div>
-                                            </div>
-
-                                            <button
-                                                disabled
-                                                className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-gray-500/20 text-gray-400 font-bold text-xs cursor-not-allowed border border-white/5"
-                                            >
-                                                Coming Soon
-                                            </button>
-                                            <div className="mt-3 pt-3 border-t border-white/5 text-center">
-                                                <p className="text-[10px] text-slate-400">
-                                                    <span className="text-yellow-500 font-bold">EMI Options Available</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm text-center">
-                                        <p className="text-slate-400 text-xs uppercase tracking-wider font-bold mb-1">Registration Fee</p>
-                                        <p className="text-2xl font-bold text-white">₹999</p>
-                                    </div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>

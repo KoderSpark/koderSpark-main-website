@@ -5,7 +5,7 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Program from './pages/Program';
+
 import Contact from './pages/Contact';
 import Work from './pages/Work';
 import ProjectDetail from './pages/ProjectDetail';
@@ -106,7 +106,7 @@ function App() {
                 {/* Public Routes */}
                 <Route element={<MainLayout />}>
                     <Route path="/" element={<Home />} />
-                    <Route path="/program" element={<Program />} />
+                    <Route path="/program" element={<Navigate to="/program/fullstack-genai" replace />} />
                     <Route path="/program/:id" element={<CourseDetail />} />
                     <Route path="/work" element={<Work />} />
                     <Route path="/work/:id" element={<ProjectDetail />} />

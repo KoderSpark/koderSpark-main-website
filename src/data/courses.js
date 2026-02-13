@@ -6,144 +6,159 @@ import vibeCodingImg from '../assets/vibe-coding.jpg';
 
 export const courses = [
     {
-        id: 'vibestack',
-        title: 'VibeStack (Fullstack + GenAI)',
-        subtitle: 'Learn. Build. Earn.',
-        description: 'An outcome-driven, income-focused full-stack development program utilizing AI for rapid development.',
-        longDescription: 'VibeStack (Fullstack + GenAI) is a 4-month AI-powered Full Stack program that helps learners learn coding, build real projects, work with real clients, and earn money even before landing a job. It is not just a traditional course; it is a bridge to your first paycheck as a developer.',
-        icon: '/favicon.png',
+        id: 'fullstack-genai',
+        title: 'FULL STACK + GENERATIVE AI PROGRAM',
+        subtitle: 'Become a Full Stack + AI Developer in 120 Days',
+        description: 'This 4-month intensive program is designed to transform beginners into industry-ready Full Stack Developers with Generative AI integration expertise.',
+        longDescription: 'This 4-month intensive program is designed to transform beginners into industry-ready Full Stack Developers with Generative AI integration expertise. Students build real-world applications and client-level systems.',
+        icon: '/favicon.png', // Keeping existing icon for now
         gradient: 'from-blue-500 to-cyan-400',
         programDetails: {
-            duration: '4 Months (16 Weeks)',
+            duration: '4 Months (Intensive Career Accelerator)',
             format: 'Online & Offline Options',
         },
         philosophy: [
-            'Learn full-stack development',
-            'Use AI for rapid “Vibe Coding”',
-            'Work on real client projects',
-            'Earn money even before getting a job',
-            'Optionally start freelancing or an agency'
+            'Become a Full Stack + AI Developer in 120 Days',
+            'Build real-world, client-ready projects',
+            'Transform from beginner to industry-ready',
+            'Gain Generative AI integration expertise'
         ],
         outcomes: [
-            'Job-ready Full Stack Developer',
-            'AI-powered Vibe Coder',
-            'First paid client experience',
-            'Freelancing / agency readiness'
+            'Full Stack Developer',
+            'AI Application Developer',
+            'Freelance AI Automation Developer',
+            'Startup-Ready Technical Founder'
         ],
         features: [
-            'AI-Assisted Vibe Coding',
-            'Real Client Projects',
-            'Income-Focused Learning',
-            'Agency & Freelancing Skills',
-            'Job-Ready Portfolio'
+            'Introduction to AI/ML Concepts',
+            'Cloud Computing Basics',
+            'Cybersecurity Fundamentals',
+            'Data Science Overview'
         ],
         roadmap: [
             {
                 phase: 'Month 1',
-                title: 'Coding Foundations',
-                objective: 'Build strong fundamentals and developer mindset.',
-                shortDescription: 'Master the basics of web development with HTML, CSS, and JavaScript.',
+                title: 'Frontend Development',
+                objective: 'Master the basics of web development.',
+                shortDescription: 'HTML, CSS, JavaScript, React',
                 icon: Code,
                 image: codingFoundationsImg,
-                techStack: ['HTML5', 'CSS3 (Flexbox, Grid)', 'JavaScript (ES6+)', 'Git & GitHub'],
+                techStack: ['HTML', 'CSS', 'JavaScript', 'React'],
                 projects: [
                     'Personal Portfolio Website',
                     'Responsive Business Landing Page',
-                    'JavaScript Mini Apps (To-Do, Calculator, Form Validation)'
+                    'Interactive Web Applications'
                 ],
                 outcomes: [
-                    'Understand how the web works',
-                    'Build responsive websites',
-                    'Write clean JavaScript',
-                    'Use Git for version control'
+                    'Proficiency in Frontend Technologies',
+                    'Ability to build responsive UIs',
+                    'Understanding of Component-Based Architecture'
                 ]
             },
             {
                 phase: 'Month 2',
-                title: 'Full Stack Development',
-                objective: 'Make learners capable of building complete applications end-to-end.',
-                shortDescription: 'Build scalable web apps using the MERN stack (MongoDB, Express, React, Node).',
+                title: 'Backend Development',
+                objective: 'Build robust server-side applications.',
+                shortDescription: 'Node.js, Express.js, MongoDB',
                 icon: Layers,
                 image: fullStackDevImg,
-                techStack: ['Frontend: React.js', 'Backend: Node.js + Express.js', 'Database: MongoDB', 'Rest APIs', 'Deployment (Vercel / Render)'],
+                techStack: ['Node.js', 'Express.js', 'MongoDB'],
                 projects: [
-                    'Full Stack Blog Application',
-                    'User Authentication System',
-                    'Dashboard App (Admin & User Roles)'
+                    'RESTful API Development',
+                    'Database Schema Design',
+                    'Backend Integration with Frontend'
                 ],
                 outcomes: [
-                    'Build scalable full-stack apps',
-                    'Handle backend logic',
-                    'Work with databases',
-                    'Deploy applications live'
+                    'Server-side Logic Implementation',
+                    'Database Management Skills',
+                    'API Development Proficiency'
                 ]
             },
             {
                 phase: 'Month 3',
-                title: 'Industry & Placement Readiness',
-                objective: 'Make learners professional, job-ready, and team-ready.',
-                shortDescription: 'Prepare for the workforce with real-world workflows and interview prep.',
+                title: 'Advanced Concepts',
+                objective: 'Master advanced full-stack concepts.',
+                shortDescription: 'Authentication, Payments, Deployment, APIs',
                 icon: Briefcase,
                 image: industryReadinessImg,
-                techStack: ['Clean Code Practices', 'API Integrations', 'Performance Optimization', 'Agile & Team Workflows'],
+                techStack: ['Authentication', 'Payment Gateways', 'Deployment', 'Advanced APIs'],
                 projects: [
-                    'Capstone Project (E-Commerce, SaaS, CRM, or LMS)',
-                    'Collaboration via GitHub Issues & PRs'
+                    'Secure Authentication System',
+                    'E-commerce Platform with Payments',
+                    'Cloud Deployment'
                 ],
                 outcomes: [
-                    'Professional Developer Profile',
-                    'Team Collaboration Skills',
-                    'Optimized Resume & LinkedIn',
-                    'Mock Interview Readiness'
+                    'Secure Application Development',
+                    'Third-party Service Integration',
+                    'Production Deployment Skills'
                 ]
             },
             {
                 phase: 'Month 4',
-                title: 'Vibe Coding + AI + Client Mode',
-                objective: 'Convert learners from developers → earners.',
-                shortDescription: 'Leverage AI for speed and start earning with real client projects.',
-                icon: IndianRupee,
+                title: 'Generative AI Integration',
+                objective: 'Integrate AI capabilities into applications.',
+                shortDescription: 'Concepts, API Integration, Real-world Implementation',
+                icon: Rocket,
                 image: vibeCodingImg,
-                techStack: ['AI Tools (ChatGPT, Copilot, Cursor)', 'Prompt Engineering', 'Rapid MVP Building'],
+                techStack: ['Generative AI Concepts', 'LLM API Integration', 'AI-Powered Features'],
                 projects: [
-                    'Real Client Project (for qualified learners)',
-                    'Freelance Profile Setup (Upwork, Fiverr)',
-                    'Cold Outreach Scripts'
+                    'AI-Enhanced Web Application',
+                    'Chatbot Integration',
+                    'Content Generation Tools'
                 ],
                 outcomes: [
-                    'Build projects in days, not weeks',
-                    'Client Communication & Pricing Skills',
-                    'First Income Proof',
-                    'Freelancing / Agency Readiness'
+                    'AI Integration Expertise',
+                    'Building Intelligent Applications',
+                    'Understanding of GenAI Landscape'
                 ]
             }
         ],
-        clientProject: {
-            title: 'VibeStack (Fullstack + GenAI) Client Challenge',
-            description: 'Only learners who complete all mandatory projects and clear evaluations will receive a real client project provided by VibeStack (Fullstack + GenAI).',
-            examples: ['Website for local business', 'Startup landing page', 'Admin dashboard', 'Internal automation tool'],
-            revenueModel: {
-                clientPays: '₹30,000',
-                studentEarns: '₹20,000',
-                vibeStackEarns: '₹10,000'
+        plans: [ // Renamed from pricing to plans to match the tiers structure better, or keep pricing but change structure
+            {
+                name: 'Premium Plan',
+                price: '₹15,000',
+                features: [
+                    'Live classes',
+                    '1 Client Project',
+                    'GenAI capstone',
+                    'Freelance setup',
+                    'Internship assistance',
+                    '1:1 mentorship',
+                    'Placement support'
+                ]
             },
-            purpose: [
-                'First income proof',
-                'Confidence boost',
-                'Real-world experience',
-                'Strong trust in the program'
-            ]
-        },
-        pricing: {
-            offline: {
-                actualFee: '₹25,000',
-                earlyBirdFee: '₹20,000',
+            {
+                name: 'Pro Plan',
+                price: '₹7,500',
+                features: [
+                    'Live classes',
+                    '1 major project',
+                    'Portfolio building',
+                    'Internship assistance',
+                    'Freelance guidance'
+                ]
             },
-            online: {
-                actualFee: '₹20,000',
-                earlyBirdFee: '₹15,000',
-            },
-            discountNote: 'Early Bird Offer'
+            {
+                name: 'Basic Plan',
+                price: '₹2,500',
+                features: [
+                    'Recorded classes',
+                    'Assignments',
+                    'Community support',
+                    'Job/internship updates'
+                ]
+            }
+        ],
+        additionalModules: {
+            title: 'Post-Program Specializations',
+            description: 'After completing the 4-month core program, you can opt for these advanced specializations to further boost your career.',
+            modules: [
+                'Introduction to AI/ML Concepts',
+                'Cloud Computing Basics',
+                'Cybersecurity Fundamentals',
+                'Data Science Overview'
+            ],
+            note: 'Available as optional add-ons. Contact for pricing.'
         }
     }
 ];
