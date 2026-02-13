@@ -7,9 +7,9 @@ import SEO from '../components/SEO';
 import { courses } from '../data/courses';
 
 const offlineImages = [
-    "/workspace_placeholder.png",
-    "/offline_mentorship.png",
-    "/developer_community.png"
+    "/workspace_placeholder.webp",
+    "/offline_mentorship.webp",
+    "/developer_community.webp"
 ];
 
 const CourseDetail = () => {
