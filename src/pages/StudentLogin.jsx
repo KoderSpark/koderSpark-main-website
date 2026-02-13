@@ -194,7 +194,7 @@ export default function StudentLogin() {
                 </div>
             )}
 
-            <div className={`w-full max-w-md bg-surface/30 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl relative z-10 overflow-hidden ${step === 1 ? 'border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.5)]' : ''}`}>
+            <div className={`w-full ${step === 2 ? 'max-w-4xl' : 'max-w-md'} bg-surface/30 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl relative z-10 overflow-hidden ${step === 1 ? 'border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.5)]' : ''} transition-all duration-500`}>
                 {/* Header */}
                 <div className="p-8 pb-0 text-center">
                     <h1 className="text-2xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60 mb-2">
@@ -281,7 +281,7 @@ export default function StudentLogin() {
                     {step === 2 && studentData && (
                         <form onSubmit={handleSubmitProfile} className="animate-in fade-in slide-in-from-right-8 duration-300">
 
-                            <div className="flex items-center gap-4 p-4 rounded-xl bg-secondary/10 border border-secondary/20 mb-8 max-w-md mx-auto md:max-w-none">
+                            <div className="flex items-center gap-4 p-4 rounded-xl bg-secondary/10 border border-secondary/20 mb-8 max-w-2xl mx-auto">
                                 <div className="w-10 h-10 rounded-full bg-secondary text-primary flex items-center justify-center font-bold">
                                     <Check className="w-5 h-5" />
                                 </div>
@@ -291,25 +291,24 @@ export default function StudentLogin() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
                                 {/* Profile Image */}
-                                <div className="md:col-span-2 flex flex-col items-center py-4">
-                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">Profile Image</label>
+                                <div className="md:col-span-12 flex flex-col items-center py-4">
                                     <div className="relative group">
-                                        <div className="w-32 h-32 rounded-full bg-white/5 border-2 border-dashed border-white/10 flex items-center justify-center overflow-hidden group-hover:border-secondary/50 transition-colors">
+                                        <div className="w-28 h-28 rounded-full bg-white/5 border-2 border-dashed border-white/10 flex items-center justify-center overflow-hidden group-hover:border-secondary/50 transition-colors">
                                             {formData.profileImage ? (
                                                 <img src={formData.profileImage} alt="Profile" className="w-full h-full object-cover" />
                                             ) : (
-                                                <User className="w-12 h-12 text-slate-600" />
+                                                <User className="w-10 h-10 text-slate-600" />
                                             )}
                                         </div>
 
                                         <label className={`
-                                            absolute bottom-0 right-0 bg-secondary text-primary p-3 rounded-full shadow-lg 
+                                            absolute bottom-0 right-0 bg-secondary text-primary p-2.5 rounded-full shadow-lg 
                                             hover:bg-secondary/90 transition-transform transform hover:scale-110 cursor-pointer
                                             ${loading ? 'opacity-50 cursor-not-allowed' : ''}
                                         `}>
-                                            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Upload className="w-5 h-5" />}
+                                            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                                             <input
                                                 type="file"
                                                 accept="image/*"
@@ -337,11 +336,11 @@ export default function StudentLogin() {
                                             />
                                         </label>
                                     </div>
-                                    <p className="text-[10px] text-slate-500 mt-3">Click the icon to upload (JPG, PNG, WEBP)</p>
+                                    <p className="text-[10px] text-slate-500 mt-2">Upload Profile Photo</p>
                                 </div>
 
                                 {/* Form Fields */}
-                                <div>
+                                <div className="md:col-span-12">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Address</label>
                                     <div className="relative">
                                         <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
@@ -356,7 +355,7 @@ export default function StudentLogin() {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="md:col-span-5">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">College</label>
                                     <div className="relative">
                                         <GraduationCap className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
@@ -371,7 +370,7 @@ export default function StudentLogin() {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="md:col-span-4">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Course</label>
                                     <div className="relative">
                                         <BookOpen className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
@@ -386,7 +385,7 @@ export default function StudentLogin() {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="md:col-span-3">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Year / Batch</label>
                                     <input
                                         type="text"
@@ -400,7 +399,7 @@ export default function StudentLogin() {
                                 </div>
 
                                 {/* New Password Fields */}
-                                <div>
+                                <div className="md:col-span-6">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Create Password</label>
                                     <div className="relative">
                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
@@ -416,7 +415,7 @@ export default function StudentLogin() {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="md:col-span-6">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Confirm Password</label>
                                     <div className="relative">
                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
@@ -433,19 +432,19 @@ export default function StudentLogin() {
                                 </div>
 
 
-                                <div className="md:col-span-2">
+                                <div className="md:col-span-12">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Bio</label>
                                     <textarea
                                         name="bio"
-                                        rows="3"
-                                        className="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-secondary focus:outline-none"
+                                        rows="2"
+                                        className="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-secondary focus:outline-none resize-none"
                                         placeholder="Tell us a bit about yourself..."
                                         value={formData.bio}
                                         onChange={handleChange}
                                     ></textarea>
                                 </div>
 
-                                <div>
+                                <div className="md:col-span-6">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">LinkedIn (Optional)</label>
                                     <div className="relative">
                                         <Linkedin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
@@ -459,7 +458,7 @@ export default function StudentLogin() {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="md:col-span-6">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">GitHub (Optional)</label>
                                     <div className="relative">
                                         <Github className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
