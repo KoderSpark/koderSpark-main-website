@@ -3,7 +3,7 @@ export const projects = [
         id: 104,
         title: "Medi Cost Saver",
         description: "Affordable Healthcare For Every Indian Family. MCS Discount Cards save you up to 25% on medical expenses through our trusted network of healthcare providers. Experience healthcare savings on medical bills, pharmacy purchases, and diagnostic tests.",
-        image: "/Medi Cost Saver.png",
+        image: "/Medi Cost Saver.webp",
         link: "https://www.medicostsaver.com/",
         reviews: [
             { name: "Ramesh Gupta", role: "Founder", text: "KoderSpark built an intuitive platform that helps thousands of families save on healthcare. Highly recommended!" },
@@ -17,7 +17,7 @@ export const projects = [
         id: 106,
         title: "Lawyers Welfare",
         description: "LawyersWelfare.com is a welfare-focused platform for legal professionals that offers information and services designed to support the financial stability, well-being, and professional needs of advocates. It provides resources related to financial protection, welfare benefits, community support, and assistance programs tailored for lawyers and their families.",
-        image: "/Lawyers Welfare.png",
+        image: "/Lawyers Welfare.webp",
         link: "https://www.lawyerswelfare.com/",
         reviews: [
             { name: "Adv. K. Narayana", role: "Director", text: "A much-needed platform for our legal community. KoderSpark delivered exactly what we envisioned." },
@@ -31,7 +31,7 @@ export const projects = [
         id: 107,
         title: "AMS Elevatex",
         description: "AMS ElevateX is a digital growth partner that helps businesses scale through social media management, lead generation systems, performance marketing, branding, and high-converting web development. With a skilled team, proven results, and fully customized strategies, we turn online traffic into measurable revenue.",
-        image: "/AMS Elevatex.png",
+        image: "/AMS Elevatex.webp",
         link: "https://www.amselevatex.com/",
         reviews: [
             { name: "Anand Mohan", role: "CEO", text: "Our digital presence has skyrocketed thanks to the website built by KoderSpark." },
@@ -45,7 +45,7 @@ export const projects = [
         id: 108,
         title: "Fixed Orthodontics",
         description: "This project highlights India’s leading Fixed Orthodontics training platform, offering specialized, clinically focused programs designed for general dentists and students. With hands-on patient training, advanced wire-bending techniques, online learning modules, and certified fellowship options.",
-        image: "/Fixed Orthodontics.png",
+        image: "/Fixed Orthodontics.webp",
         link: "https://www.fixedorthodontics.com/",
         reviews: [
             { name: "Dr. P. Suresh", role: "Course Director", text: "The platform makes managing our training programs and student data effortless." },
@@ -59,7 +59,7 @@ export const projects = [
         id: 109,
         title: "Eng Welfare",
         description: "erswelfareindia is a dedicated support platform for engineering professionals, offering project insurance, technical assistance, career networking, and exclusive skill-building benefits. Designed to enhance professional growth and personal security.",
-        image: "/Eng Welfare.png",
+        image: "/Eng Welfare.webp",
         link: "https://www.engwelfare.com/",
         reviews: [
             { name: "Er. T. Satyanarayana", role: "Founder", text: "KoderSpark understood the specific needs of engineers and built a robust platform." },
@@ -73,7 +73,7 @@ export const projects = [
         id: 110,
         title: "Indian Dental Academy",
         description: "This project showcases advanced clinical training programs designed to elevate dentists’ precision through cadaver labs, chairside mentoring, and globally recognized learning pathways. With over 20 years of expert-led mentorship.",
-        image: "/Indian Dental Academy.png",
+        image: "/Indian Dental Academy.webp",
         link: "https://www.indiandentalacademy.com/",
         reviews: [
             { name: "Dr. Chandra Sekhar", role: "Dean", text: "Our academy's digital presence is now world-class thanks to this website." },
@@ -87,7 +87,7 @@ export const projects = [
         id: 103,
         title: "DRS Welfare India",
         description: "A comprehensive self-support scheme designed exclusively for doctors and dentists to ensure financial security and peace of mind. Built by healthcare professionals, for healthcare professionals, offering comprehensive family coverage.",
-        image: "/drswelfareindia.png",
+        image: "/drswelfareindia.webp",
         link: "https://www.drswelfare.com/",
         reviews: [
             { name: "Dr. V. Rao", role: "Chairman", text: "Security and trust are key for us, and this website delivers both." },
@@ -101,7 +101,7 @@ export const projects = [
         id: 111,
         title: "Baby Imprints",
         description: "Baby Imprints offers premium 3D hand, foot, and face casting services in Hyderabad, creating beautiful keepsakes that preserve your baby's precious moments forever. With over 20 years of expertise and thousands of happy parents.",
-        image: "/Baby Imprints.png",
+        image: "/Baby Imprints.webp",
         link: "https://www.babyimprints.in/",
         reviews: [
             { name: "Anitha Reddy", role: "Owner", text: "The website beautifully showcases our art and helps parents reach us easily." },
@@ -115,7 +115,7 @@ export const projects = [
         id: 112,
         title: "Jobs Et Al",
         description: "jobs et al is a smart career platform that helps professionals find roles that match their skills and goals through AI-powered job matching, quick applications, and verified opportunities. With 500+ active jobs, trusted companies.",
-        image: "/Jobs Et Al.png",
+        image: "/Jobs Et Al.webp",
         link: "https://www.jobsetal.com/",
         reviews: [
             { name: "K. Venkat", role: "Founder", text: "Our user base grew rapidly thanks to the smooth job search experience." },
@@ -129,7 +129,7 @@ export const projects = [
         id: 113,
         title: "Teachers Welfare",
         description: "TeachersWelfare’s MentorSecure is a member-owned welfare platform that supports Indian educators—including teachers, lecturers, principals, and academic counselors—by providing financial protection, nominee security, emergency assistance.",
-        image: "/Teachers Welfare.png",
+        image: "/Teachers Welfare.webp",
         link: "https://www.teacherswelfare.org/",
         reviews: [
             { name: "M. Prabhakar", role: "President", text: "We can now reach more teachers and offer better support instantly." },
@@ -143,7 +143,7 @@ export const projects = [
         id: 114,
         title: "Aurobindo Dental",
         description: "Aurobindo Dental Hospital, established in 2004 in Madhapur, Hyderabad, offers comprehensive dental care with a team of experienced dentists. Providing a wide range of treatments—from invisible aligners to implants.",
-        image: "/Aurobindo Dental.png",
+        image: "/Aurobindo Dental.webp",
         link: "https://www.aurobindodental.com/",
         reviews: [
             { name: "Dr. Sudhakar", role: "Director", text: "Patients find it easy to book appointments and view our services online." },
@@ -157,7 +157,7 @@ export const projects = [
         id: 115,
         title: "Present Classifieds",
         description: "Present Classifieds is an online platform that connects users with trusted local service providers across a wide range of categories, including home services, health and wellness, automotive, legal, education, and more.",
-        image: "/Present Classifieds.png",
+        image: "/Present Classifieds.webp",
         link: "https://www.presentclassifieds.com/",
         reviews: [
             { name: "Satish Kumar", role: "Founder", text: "A robust platform handling thousands of local listings smoothly." },
@@ -171,7 +171,7 @@ export const projects = [
         id: 116,
         title: "Famileetree",
         description: "Family Tree is a secure platform for storing, organizing, and sharing family memories in one central account. It allows all family members to access photos with shared credentials, organizes memories by events.",
-        image: "/Famileetree.png",
+        image: "/Famileetree.webp",
         link: "https://www.famileetree.in/",
         reviews: [
             { name: "P. Vikram", role: "Founder", text: "Families love how easy it is to preserve their legacy on our platform." },
@@ -185,7 +185,7 @@ export const projects = [
         id: 117,
         title: "Sree Comfortables",
         description: "SREE COMFORTABLES Pvt. Ltd. is a premier manufacturer of office furniture and interior solutions in Kukatpally, Hyderabad. Custom workstations, residential interiors, and executive cabins designed for comfort and style.",
-        image: "/sree_comfortables.png",
+        image: "/sree_comfortables.webp",
         link: "https://www.sreecomfortables.in/",
         reviews: [
             { name: "Sreenivasa Gorantla", role: "Client", text: "Excellent showcase of our furniture catalog. Business inquiries increased!" },
@@ -199,7 +199,7 @@ export const projects = [
         id: 118,
         title: "Chit Funds Premium",
         description: "A trusted platform managed by Ambati Yellesh for exploring and managing premium chit fund schemes. Dedicated to providing financial growth and secure savings options with transparency and reliability.",
-        image: "/chit_funds_premium.png",
+        image: "/chit_funds_premium.webp",
         link: "https://www.ambatiyellesh.com/",
         reviews: [
             { name: "Ambati Yellesh", role: "Client", text: "This platform helps me connect with subscribers transparently and efficiently." },
@@ -207,6 +207,34 @@ export const projects = [
             { name: "Murali Krishna", role: "Subscriber", text: "Transparency is the best part of this group." },
             { name: "K. Anuradha", role: "Subscriber", text: "Good saving option for monthly income people." },
             { name: "P. Narsing Rao", role: "Subscriber", text: "Trustworthy management and timely payments." }
+        ]
+    },
+    {
+        id: 119,
+        title: "Hire In Minutes",
+        description: "Transforming hiring into an elegant, skill-first experience with verified talent ecosystem. Where skills meet opportunity, enabling 60% faster hiring with a verified candidate pool.",
+        image: "/hire_in_minutes.webp",
+        link: "https://www.hireinminutes.in/",
+        reviews: [
+            { name: "Karthik Dev", role: "Student", text: "Got placed in a top startup within days. The skill passport feature is a game changer." },
+            { name: "S. Ananya", role: "Recruiter", text: "Finally a platform that validates skills before we even interview. Saves so much time." },
+            { name: "Rahul M", role: "Startup Founder", text: "Hired our core team through this platform. The quality of talent is exceptional." },
+            { name: "P. Sneha", role: "HR Manager", text: "The instant hiring feature creates a seamless experience for both parties." },
+            { name: "V. Arjun", role: "Developer", text: "Showcasing projects instead of just resumes made all the difference." }
+        ]
+    },
+    {
+        id: 120,
+        title: "YASH FILM FACTORY",
+        description: "We don't just film; we excavate. Every frame is a deliberate attempt to capture the unseen frequencies of human emotion. Vision meets execution in this ultra-premium cinematic experience.",
+        image: "/yff_movies.webp",
+        link: "https://www.yffmovies.com/",
+        reviews: [
+            { name: "Aditya Roy", role: "Director", text: "YFF understands the soul of cinema. Their production quality is unmatched." },
+            { name: "K. Meera", role: "Producer", text: "From script to screen, the execution was flawless and visually stunning." },
+            { name: "R. Siddharth", role: "Cinematographer", text: "The attention to lighting and detail in their studio is world-class." },
+            { name: "S. Varun", role: "Actor", text: "A truly professional environment that brings out the best in every artist." },
+            { name: "N. Pooja", role: "Writer", text: "They treated my script with such reverence. The final output exceeded my dreams." }
         ]
     }
 ];

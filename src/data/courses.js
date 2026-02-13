@@ -1,8 +1,8 @@
 import { Globe, Code, Zap, Briefcase, Award, Rocket, Layers, IndianRupee } from 'lucide-react';
-import codingFoundationsImg from '../assets/coding-foundations.jpg';
-import fullStackDevImg from '../assets/full-stack-dev.jpg';
-import industryReadinessImg from '../assets/industry-readiness.jpg';
-import vibeCodingImg from '../assets/vibe-coding.jpg';
+import codingFoundationsImg from '../assets/coding-foundations.webp';
+import fullStackDevImg from '../assets/full-stack-dev.webp';
+import industryReadinessImg from '../assets/industry-readiness.webp';
+import vibeCodingImg from '../assets/vibe-coding.webp';
 
 export const courses = [
     {
@@ -11,7 +11,7 @@ export const courses = [
         subtitle: 'Become a Full Stack + AI Developer in 120 Days',
         description: 'This 4-month intensive program is designed to transform beginners into industry-ready Full Stack Developers with Generative AI integration expertise.',
         longDescription: 'This 4-month intensive program is designed to transform beginners into industry-ready Full Stack Developers with Generative AI integration expertise. Students build real-world applications and client-level systems.',
-        icon: '/favicon.png', // Keeping existing icon for now
+        icon: '/favicon.webp', // Keeping existing icon for now
         gradient: 'from-blue-500 to-cyan-400',
         programDetails: {
             duration: '4 Months (Intensive Career Accelerator)',

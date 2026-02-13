@@ -4,6 +4,8 @@ import api from '../api/axios';
 import { Loader2, ArrowRight, Check, Upload, User, MapPin, GraduationCap, Github, Linkedin, BookOpen, Lock, Eye, EyeOff, IndianRupee, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+import loginBgPremium from '../assets/login-bg-premium.webp';
+
 export default function StudentLogin() {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -12,6 +14,8 @@ export default function StudentLogin() {
     // Initialize step from URL, default to 1
     const initialStep = parseInt(searchParams.get('step')) || 1;
     const [step, setStepState] = useState(initialStep);
+
+    // ... (rest of state items are unchanged, I will assume them)
 
     const [loading, setLoading] = useState(false);
 
@@ -173,15 +177,26 @@ export default function StudentLogin() {
 
     return (
         <div className="min-h-screen bg-primary flex items-center justify-center p-4 relative overflow-hidden">
-            {/* Background Decorations */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-secondary/5 blur-[100px]" />
-                <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-[100px]" />
-            </div>
+            {/* Background Image for Step 1 Only */}
+            {step === 1 && (
+                <div className="absolute inset-0 z-0">
+                    <img src={loginBgPremium} alt="Background" className="w-full h-full object-cover opacity-50" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent"></div>
+                    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+                </div>
+            )}
 
-            <div className="w-full max-w-2xl bg-surface/50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl relative z-10 overflow-hidden">
+            {/* Background Decorations (Visible on other steps or subtly on step 1) */}
+            {step !== 1 && (
+                <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                    <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-secondary/5 blur-[100px]" />
+                    <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-[100px]" />
+                </div>
+            )}
+
+            <div className={`w-full max-w-md bg-surface/30 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl relative z-10 overflow-hidden ${step === 1 ? 'border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.5)]' : ''}`}>
                 {/* Header */}
-                <div className="p-8 border-b border-white/5 text-center">
+                <div className="p-8 pb-0 text-center">
                     <h1 className="text-2xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60 mb-2">
                         Student Portal
                     </h1>
