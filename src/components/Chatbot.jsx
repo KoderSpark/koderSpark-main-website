@@ -102,7 +102,7 @@ const Chatbot = () => {
                 setFormData(prev => ({ ...prev, graduationStatus: input }));
                 if (input.toLowerCase().includes('studying') || input.toLowerCase().includes('student')) {
                     setStep(5); // Go to Batch
-                    simulateBotResponse("What is your batch year? (e.g., 2022-2026)");
+                    simulateBotResponse("What is your batch year? (e.g., 2026-2029)");
                 } else {
                     setStep(7); // Skip Batch/Sem
                     simulateBotResponse("Please enter your phone number");
