@@ -1,4 +1,4 @@
-const SHEET_NAME = "Sheet1";
+const SHEET_NAME = "studentdata";
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
@@ -6,52 +6,58 @@ function doPost(e) {
 
   try {
     const doc = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = doc.getSheetByName(SHEET_NAME);
+    let sheet = doc.getSheetByName(SHEET_NAME);
 
-    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    if (!sheet) {
+      sheet = doc.insertSheet(SHEET_NAME);
+      // Add headers if new sheet
+      sheet.appendRow(["Date", "Full Name", "College Name", "Branch", "Graduation Status", "Batch", "Semester", "Phone", "Email"]);
+    }
+
+    const data = JSON.parse(e.postData.contents);
+    
+    // Check for duplicates (optional, based on email)
+    // const emailColumn = 9; // Adjusted for new column
+    // const emails = sheet.getRange(2, emailColumn, sheet.getLastRow(), 1).getValues().flat();
+    // if (emails.includes(data.email)) {
+    //   return ContentService
+    //     .createTextOutput(JSON.stringify({ "result": "error", "error": "Email already exists" }))
+    //     .setMimeType(ContentService.MimeType.JSON);
+    // }
+
     const nextRow = sheet.getLastRow() + 1;
-
-    const newRow = headers.map(function(header) {
-      return header === 'timestamp' ? new Date() : e.parameter[header];
-    });
+    const newRow = [
+      new Date(),             // Date
+      data.fullName,          // Full Name
+      data.collegeName,       // College Name
+      data.branch,            // Branch
+      data.graduationStatus,  // Graduation Status
+      data.batch || "",       // Batch (NEW - Optional)
+      data.semester || "",    // Semester (Optional)
+      "'" + data.phone,       // Phone (store as string)
+      data.email              // Email
+    ];
 
     sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
 
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .createTextOutput(JSON.stringify({ "result": "success", "row": nextRow }))
       .setMimeType(ContentService.MimeType.JSON);
-  }
 
-  catch (e) {
+  } catch (e) {
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .createTextOutput(JSON.stringify({ "result": "error", "error": e.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  finally {
+  } finally {
     lock.releaseLock();
   }
 }
 
 function setup() {
     const doc = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = doc.getSheetByName(SHEET_NAME);
-    
-    // Add headers if they don't exist
-    if (sheet.getLastRow() === 0) {
-        const headers = [
-            "timestamp", 
-            "firstName", 
-            "lastName", 
-            "email", 
-            "message", 
-            "fullName", 
-            "phone", 
-            "address", 
-            "resumeLink", 
-            "portfolioLink",
-            "type" // To distinguish between 'contact' and 'career'
-        ];
-        sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    let sheet = doc.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+        sheet = doc.insertSheet(SHEET_NAME);
+        sheet.appendRow(["Date", "Full Name", "College Name", "Branch", "Graduation Status", "Batch", "Semester", "Phone", "Email"]);
     }
 }

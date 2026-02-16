@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { motion } from 'framer-motion';
 import { Send, Mail, MapPin, Phone, ArrowRight, Loader2, Copy } from 'lucide-react';
 import SEO from '../components/SEO';
 

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ChevronRight, Zap, Briefcase, Code, Award, Target, Rocket, Sparkles, Calendar, Laptop, Building2, Users, Banknote, TrendingUp, Wallet, Layout, DollarSign } from 'lucide-react';
 import SEO from '../components/SEO';
 import { courses } from '../data/courses';
+import Chatbot from '../components/Chatbot';
 
 const offlineImages = [
     "/workspace_placeholder.webp",
@@ -608,6 +609,7 @@ const CourseDetail = () => {
                         </div>
                     </div>
                 </div>
+                <Chatbot />
             </div>
         </main>
     );
