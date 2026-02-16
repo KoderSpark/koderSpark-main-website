@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
+import { motion as Motion } from 'framer-motion';
 import { Send, Mail, MapPin, Phone, ArrowRight, Loader2, Copy } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -65,7 +66,6 @@ const Contact = () => {
                 description="Get in touch with Koderspark. We'd love to hear about your project and how we can help you build something extraordinary."
                 canonical="https://koderspark.com/contact"
             />
-            <Toaster position="bottom-right" reverseOrder={false} />
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
             <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl -z-10"></div>
@@ -73,7 +73,7 @@ const Contact = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
                     {/* Contact Info */}
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
@@ -93,38 +93,38 @@ const Contact = () => {
                         {/* Image Grid */}
                         <div className="mt-12 grid grid-cols-2 gap-4">
                             <div className="space-y-4">
-                                <motion.div
+                                <Motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4 }}
                                     className="rounded-2xl overflow-hidden h-48 border border-white/10"
                                 >
                                     <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Office" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 will-change-transform" />
-                                </motion.div>
-                                <motion.div
+                                </Motion.div>
+                                <Motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.6 }}
                                     className="rounded-2xl overflow-hidden h-32 border border-white/10"
                                 >
                                     <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=400&q=80" alt="Tech" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 will-change-transform" />
-                                </motion.div>
+                                </Motion.div>
                             </div>
                             <div className="pt-8">
-                                <motion.div
+                                <Motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
                                     className="rounded-2xl overflow-hidden h-64 border border-white/10"
                                 >
                                     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Team" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 will-change-transform" />
-                                </motion.div>
+                                </Motion.div>
                             </div>
                         </div>
-                    </motion.div>
+                    </Motion.div>
 
                     {/* Contact Form */}
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
@@ -211,7 +211,7 @@ const Contact = () => {
                                 { icon: Phone, title: "WhatsApp", value: "+91 98662 93371", color: "text-icon2", bg: "bg-icon2/10", link: "https://wa.me/919866293371" },
                                 { icon: MapPin, title: "Visit", value: "Mayuri Tech Park, KoderSpark, 4th floor, Mangalagiri, Andhra Pradesh 522503", color: "text-icon3", bg: "bg-icon3/10", link: "https://maps.app.goo.gl/9qYTzrhpQSavuuuz8" }
                             ].map((item, index) => (
-                                <motion.a
+                                <Motion.a
                                     key={index}
                                     href={item.link}
                                     target={item.link.startsWith('http') ? "_blank" : undefined}
@@ -235,10 +235,10 @@ const Contact = () => {
                                         <h3 className="text-white font-bold text-xs mb-1">{item.title}</h3>
                                         <p className="text-slate-200 text-[10px] break-words group-hover:text-white transition-colors">{item.value}</p>
                                     </div>
-                                </motion.a>
+                                </Motion.a>
                             ))}
                         </address>
-                    </motion.div>
+                    </Motion.div>
                 </div>
             </div>
         </main>

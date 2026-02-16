@@ -120,7 +120,6 @@ function App() {
                 <Route path="*" element={<NotFound />} />
             </Routes>
 
-            <Toaster position="bottom-right" reverseOrder={false} />
             <Toaster
                 position="bottom-right"
                 reverseOrder={false}
