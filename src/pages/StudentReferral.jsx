@@ -72,7 +72,7 @@ export default function StudentReferral() {
                                     <div>
                                         <h3 className="text-lg font-bold text-white mb-1">You Get Paid</h3>
                                         <p className="text-slate-400 text-sm leading-relaxed">
-                                            Once verified, you receive <span className="text-white font-bold">₹2500</span> directly to your account.
+                                            Once verified, you receive <span className="text-white font-bold">Upto ₹2500</span> directly to your account.
                                         </p>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@ export default function StudentReferral() {
 
                             <Wallet className="w-10 h-10 mx-auto mb-3" />
                             <div className="text-xs font-bold uppercase tracking-widest mb-2 opacity-90">You Earn</div>
-                            <div className="text-4xl font-black mb-1">₹2500</div>
+                            <div className="text-4xl font-black mb-1">Upto ₹2500</div>
                             <div className="text-xs opacity-75 mb-6">Per successful referral</div>
 
                             <a

@@ -167,7 +167,7 @@ export default function AdminStudentPayment() {
                 <div className="text-center py-20 bg-surface/30 border border-white/5 rounded-2xl border-dashed">
                     <Search className="w-12 h-12 text-slate-700 mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-white mb-2">No Student Selected</h3>
-                    <p className="text-slate-400">Please search for a student in the <span className="text-secondary cursor-pointer hover:underline" onClick={() => navigate('/kodersparkasadmin/search')}>Search Page</span> to manage payments.</p>
+                    <p className="text-slate-400">Please search for a student in the <span className="text-secondary cursor-pointer hover:underline" onClick={() => navigate('/ks-admin/search')}>Search Page</span> to manage payments.</p>
                 </div>
             )}
 

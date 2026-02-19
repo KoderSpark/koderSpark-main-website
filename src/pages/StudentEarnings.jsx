@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
-import { Loader2, IndianRupee, TrendingUp, BookOpen, Calendar, ArrowUpRight, Wallet, History, ShieldCheck } from 'lucide-react';
+import { Loader2, IndianRupee, TrendingUp, BookOpen, Calendar, ArrowUpRight, Wallet, History } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function StudentEarnings() {
@@ -114,15 +114,7 @@ export default function StudentEarnings() {
                     </div>
 
                     {/* Status Card (Compact) */}
-                    <div className="bg-surface/30 backdrop-blur-xl border border-white/5 p-5 rounded-[32px] flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
-                            <ShieldCheck className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Account Status</p>
-                            <p className="text-xs font-bold text-white uppercase tracking-tight">Financial Profile Verified</p>
-                        </div>
-                    </div>
+
                 </div>
 
                 {/* Right Side: Detailed Payout History */}

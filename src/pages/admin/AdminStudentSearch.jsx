@@ -194,14 +194,14 @@ export default function AdminStudentSearch() {
                                     </div>
                                     <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-4">
                                         <button
-                                            onClick={() => navigate('/kodersparkasadmin/tasks', { state: { email: student.email } })}
+                                            onClick={() => navigate('/ks-admin/tasks', { state: { email: student.email } })}
                                             className="bg-secondary text-primary font-bold px-5 py-2 rounded-xl hover:bg-secondary/90 transition-all flex items-center gap-2 text-sm shadow-lg shadow-secondary/10"
                                         >
                                             <ClipboardList className="w-4 h-4" />
                                             ASSIGN TASK
                                         </button>
                                         <button
-                                            onClick={() => navigate('/kodersparkasadmin/payments', { state: { email: student.email } })}
+                                            onClick={() => navigate('/ks-admin/payments', { state: { email: student.email } })}
                                             className="bg-emerald-500 text-white font-bold px-5 py-2 rounded-xl hover:bg-emerald-600 transition-all flex items-center gap-2 text-sm shadow-lg shadow-emerald-500/10"
                                         >
                                             <IndianRupee className="w-4 h-4" />

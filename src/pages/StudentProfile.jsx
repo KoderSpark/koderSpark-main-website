@@ -81,8 +81,8 @@ export default function StudentProfile() {
                         </h1>
                         <div className="flex flex-wrap items-center gap-2 md:gap-3">
                             <span className={`flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${student.status === 'Approved' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' :
-                                    student.status === 'Verifying' ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' :
-                                        'bg-amber-500/10 border-amber-500/20 text-amber-400'
+                                student.status === 'Verifying' ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' :
+                                    'bg-amber-500/10 border-amber-500/20 text-amber-400'
                                 }`}>
                                 <ShieldCheck className={`w-3 h-3 ${student.status === 'Approved' ? 'text-emerald-500' : student.status === 'Verifying' ? 'text-blue-500' : 'text-amber-500'}`} />
                                 {student.status || 'Pending'} Student
@@ -98,23 +98,7 @@ export default function StudentProfile() {
             <div className="pt-14 grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Left side: Main Stats & Bio */}
                 <div className="lg:col-span-1 space-y-6">
-                    {/* Progress Card (Compacted) */}
-                    <div className="bg-[#0f1014] border border-white/5 p-6 rounded-[32px] text-center shadow-2xl relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:rotate-12 transition-transform">
-                            <GraduationCap className="w-16 h-16" />
-                        </div>
-                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Course Progress</p>
-                        <div className="text-4xl font-black text-white mb-1">{student.progress || 0}<span className="text-secondary text-xl">%</span></div>
-                        <div className="w-full bg-white/5 h-1.5 rounded-full mt-4 mb-2">
-                            <div className="bg-secondary h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(255,204,0,0.3)]" style={{ width: `${student.progress || 0}%` }} />
-                        </div>
-                        <p className="text-[8px] font-bold text-slate-600 uppercase tracking-widest leading-relaxed">
-                            {student.progress < 25 ? 'Phase 01: Coding Foundations' :
-                                student.progress < 50 ? 'Phase 02: Full Stack Development' :
-                                    student.progress < 75 ? 'Phase 03: Industry Readiness' :
-                                        'Phase 04: Vibe Coding + AI'}
-                        </p>
-                    </div>
+
 
                     {/* Bio Section (Compacted) */}
                     <div className="bg-surface/30 backdrop-blur-xl border border-white/5 p-6 rounded-[32px] shadow-xl">
