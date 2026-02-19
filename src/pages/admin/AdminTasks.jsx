@@ -20,6 +20,10 @@ export default function AdminTasks() {
     const [isEditing, setIsEditing] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
 
+    // Delete Confirmation State
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [taskToDelete, setTaskToDelete] = useState(null);
+
     // Initial load if email passed from search
     useEffect(() => {
         const fetchStudent = async () => {
@@ -109,11 +113,17 @@ export default function AdminTasks() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const handleDeleteTask = async (taskIndex) => {
-        if (!window.confirm("Delete this task?")) return;
+    const initiateDeleteTask = (taskIndex) => {
+        setTaskToDelete(taskIndex);
+        setShowDeleteModal(true);
+    };
+
+    const confirmDeleteTask = async () => {
+        if (taskToDelete === null) return;
+
         setLoading(true);
         try {
-            const updatedTasks = student.tasks.filter((_, i) => i !== taskIndex);
+            const updatedTasks = student.tasks.filter((_, i) => i !== taskToDelete);
             await api.put(`/admin/students/${student._id}/tasks`, {
                 tasks: updatedTasks
             });
@@ -121,7 +131,7 @@ export default function AdminTasks() {
             setStudent(prev => ({ ...prev, tasks: updatedTasks }));
 
             // Re-sync editing state if deleting the one being edited
-            if (isEditing && editIndex === taskIndex) {
+            if (isEditing && editIndex === taskToDelete) {
                 setIsEditing(false);
                 setEditIndex(null);
                 setTaskTitle('');
@@ -134,11 +144,13 @@ export default function AdminTasks() {
             toast.error("Delete failed");
         } finally {
             setLoading(false);
+            setShowDeleteModal(false);
+            setTaskToDelete(null);
         }
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 relative">
             <header>
                 <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Student Tasks</h2>
                 <p className="text-slate-400 mt-2">Assign and manage tasks for students.</p>
@@ -308,7 +320,7 @@ export default function AdminTasks() {
                                                         <Plus className="w-4 h-4 rotate-45" />
                                                     </button>
                                                     <button
-                                                        onClick={() => handleDeleteTask(originalIdx)}
+                                                        onClick={() => initiateDeleteTask(originalIdx)}
                                                         className="p-2 bg-rose-500/10 text-rose-500 rounded-lg hover:bg-rose-500 hover:text-white transition-all"
                                                         title="Delete Task"
                                                     >
@@ -329,6 +341,37 @@ export default function AdminTasks() {
                     </div>
                 </div>
             )}
+
+            {/* Custom Delete Confirmation Modal */}
+            {showDeleteModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+                    <div className="bg-surface border border-white/10 rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+                        <div className="p-6 text-center">
+                            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4 text-red-400">
+                                <Trash2 className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">Delete Task?</h3>
+                            <p className="text-slate-400 text-sm mb-6">Are you sure you want to delete this task? This action cannot be undone.</p>
+
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setShowDeleteModal(false)}
+                                    className="flex-1 py-2.5 rounded-lg border border-white/10 text-slate-300 hover:bg-white/5 font-semibold transition-colors"
+                                >
+                                    No, Keep It
+                                </button>
+                                <button
+                                    onClick={confirmDeleteTask}
+                                    className="flex-1 py-2.5 rounded-lg bg-red-500 text-white hover:bg-red-600 font-bold transition-colors shadow-lg shadow-red-500/20"
+                                >
+                                    Yes, Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 }

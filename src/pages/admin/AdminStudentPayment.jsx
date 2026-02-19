@@ -17,6 +17,10 @@ export default function AdminStudentPayment() {
     const [isEditing, setIsEditing] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
 
+    // Delete Confirmation State
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [payoutToDelete, setPayoutToDelete] = useState(null);
+
     // Initial load if email passed from search
     useEffect(() => {
         const fetchStudent = async () => {
@@ -118,12 +122,17 @@ export default function AdminStudentPayment() {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     };
 
-    const handleDeletePayout = async (index) => {
-        if (!window.confirm("Are you sure you want to delete this payout record?")) return;
+    const initiateDeletePayout = (index) => {
+        setPayoutToDelete(index);
+        setShowDeleteModal(true);
+    };
+
+    const confirmDeletePayout = async () => {
+        if (payoutToDelete === null) return;
 
         setLoading(true);
         try {
-            const updatedPayouts = student.payouts.filter((_, i) => i !== index);
+            const updatedPayouts = student.payouts.filter((_, i) => i !== payoutToDelete);
 
             await api.put(`/admin/students/${student._id}/payment`, {
                 payouts: updatedPayouts
@@ -133,7 +142,7 @@ export default function AdminStudentPayment() {
             setStudent(prev => ({ ...prev, payouts: updatedPayouts }));
 
             // If deleting the one being edited, reset form
-            if (isEditing && editIndex === index) {
+            if (isEditing && editIndex === payoutToDelete) {
                 setPayoutTitle('');
                 setPayoutAmount('');
                 setIsEditing(false);
@@ -144,6 +153,8 @@ export default function AdminStudentPayment() {
             toast.error("Failed to delete payout");
         } finally {
             setLoading(false);
+            setShowDeleteModal(false);
+            setPayoutToDelete(null);
         }
     };
 
@@ -155,7 +166,7 @@ export default function AdminStudentPayment() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 relative">
             <header className="flex justify-between items-end">
                 <div>
                     <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Payment Status</h2>
@@ -254,7 +265,7 @@ export default function AdminStudentPayment() {
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                 </button>
                                                 <button
-                                                    onClick={() => handleDeletePayout(index)}
+                                                    onClick={() => initiateDeletePayout(index)}
                                                     className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-white/5 transition-colors"
                                                     title="Delete"
                                                 >
@@ -326,6 +337,36 @@ export default function AdminStudentPayment() {
                         </div>
                     </div>
 
+                </div>
+            )}
+
+            {/* Custom Delete Confirmation Modal */}
+            {showDeleteModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+                    <div className="bg-surface border border-white/10 rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+                        <div className="p-6 text-center">
+                            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4 text-red-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">Delete Payout?</h3>
+                            <p className="text-slate-400 text-sm mb-6">Are you sure you want to delete this payout record? This action cannot be undone.</p>
+
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setShowDeleteModal(false)}
+                                    className="flex-1 py-2.5 rounded-lg border border-white/10 text-slate-300 hover:bg-white/5 font-semibold transition-colors"
+                                >
+                                    No, Keep It
+                                </button>
+                                <button
+                                    onClick={confirmDeletePayout}
+                                    className="flex-1 py-2.5 rounded-lg bg-red-500 text-white hover:bg-red-600 font-bold transition-colors shadow-lg shadow-red-500/20"
+                                >
+                                    Yes, Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
