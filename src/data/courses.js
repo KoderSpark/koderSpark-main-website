@@ -118,7 +118,7 @@ export const courses = [
                 name: 'Premium Plan',
                 price: '₹15,000',
                 features: [
-                    'Live classes',
+
                     '1 Client Project',
                     'GenAI capstone',
                     'Freelance setup',
@@ -131,7 +131,7 @@ export const courses = [
                 name: 'Pro Plan',
                 price: '₹7,500',
                 features: [
-                    'Live classes',
+
                     '1 major project',
                     'Portfolio building',
                     'Internship assistance',
