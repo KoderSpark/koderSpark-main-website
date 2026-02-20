@@ -13,6 +13,8 @@ import Careers from './pages/Careers';
 import JobApplication from './pages/JobApplication';
 import Announcements from './pages/Announcements';
 import CourseDetail from './pages/CourseDetail';
+import CampusTechAccess from './pages/CampusTechAccess';
+import CollegeRegistration from './pages/CollegeRegistration';
 import StudentLogin from './pages/StudentLogin';
 
 import ScrollToTop from './components/ScrollToTop';
@@ -108,6 +110,8 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/program" element={<Navigate to="/program/fullstack-genai" replace />} />
                     <Route path="/program/:id" element={<CourseDetail />} />
+                    <Route path="/campus-tech-access" element={<CampusTechAccess />} />
+                    <Route path="/college-registration" element={<CollegeRegistration />} />
                     <Route path="/work" element={<Work />} />
                     <Route path="/work/:id" element={<ProjectDetail />} />
                     <Route path="/careers" element={<Careers />} />
