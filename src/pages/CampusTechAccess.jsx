@@ -28,7 +28,7 @@ const CampusTechAccess = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#050510] relative overflow-hidden text-slate-300 font-sans pt-24 pb-20">
+        <div className="min-h-screen bg-[#050510] relative overflow-hidden text-slate-300 font-sans pt-16 md:pt-24 pb-12 md:pb-20">
             {/* Background Effects */}
             <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
@@ -36,11 +36,11 @@ const CampusTechAccess = () => {
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px]"></div>
             </div>
 
-            <div className="container mx-auto px-4 md:px-6 relative z-10 space-y-32">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 space-y-16 md:space-y-24 lg:space-y-32">
 
                 {/* HERO SECTION */}
                 <section className="pt-10 lg:pt-20">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                         <Motion.div
                             initial="hidden" animate="visible" variants={staggerContainer}
                             className="space-y-8"
@@ -50,11 +50,11 @@ const CampusTechAccess = () => {
                                 <span>Future-Ready Learning</span>
                             </Motion.div>
 
-                            <Motion.h1 variants={fadeIn} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                            <Motion.h1 variants={fadeIn} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
                                 Campus Tech Access <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Program</span>
                             </Motion.h1>
 
-                            <Motion.p variants={fadeIn} className="text-xl text-slate-400 font-medium">
+                            <Motion.p variants={fadeIn} className="text-lg sm:text-xl text-slate-400 font-medium max-w-xl">
                                 Continuous Technology Learning Ecosystem
                             </Motion.p>
 
@@ -64,11 +64,11 @@ const CampusTechAccess = () => {
                                 <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-cyan-400" /> Skill-Driven</span>
                             </Motion.div>
 
-                            <Motion.div variants={fadeIn} className="flex flex-wrap gap-4 pt-4">
-                                <Link to="/college-registration" className="px-8 py-4 rounded-full bg-white text-black font-bold hover:bg-slate-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] flex items-center gap-2">
+                            <Motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 pt-4">
+                                <Link to="/college-registration" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-bold hover:bg-slate-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30_rgba(255,255,255,0.5)] flex items-center justify-center gap-2">
                                     <Building2 size={18} /> Register Your College
                                 </Link>
-                                <a href="#paths" className="px-8 py-4 rounded-full bg-white/5 text-white font-bold border border-white/10 hover:bg-white/10 transition-all flex items-center gap-2">
+                                <a href="#paths" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 text-white font-bold border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                                     Explore Learning Paths <ArrowRight size={18} />
                                 </a>
                             </Motion.div>
@@ -99,9 +99,9 @@ const CampusTechAccess = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-4 h-full relative z-10">
+                                    <div className="flex flex-col sm:flex-row gap-4 h-full relative z-10 overflow-y-auto sm:overflow-hidden pb-4">
                                         {/* Sidebar Area */}
-                                        <div className="w-1/3 flex flex-col gap-3">
+                                        <div className="w-full sm:w-1/3 flex flex-col gap-3">
                                             <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-1">Learning Path</div>
 
                                             <div className="w-full relative flex-grow bg-gradient-to-br from-purple-900/40 to-indigo-900/40 rounded-lg border border-purple-500/20 p-3 flex flex-col justify-between overflow-hidden shadow-inner group">
@@ -130,7 +130,7 @@ const CampusTechAccess = () => {
                                         </div>
 
                                         {/* Main Content Area */}
-                                        <div className="w-2/3 flex flex-col gap-3">
+                                        <div className="w-full sm:w-2/3 flex flex-col gap-3">
                                             <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 border border-white/5">
                                                 <div className="flex items-center gap-2">
                                                     <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-500 to-cyan-500 p-[1px]">
@@ -180,7 +180,7 @@ const CampusTechAccess = () => {
                                                             </div>
                                                         </div>
 
-                                                        <button className="flex items-center gap-1 bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 transition-colors text-white text-[10px] font-bold px-3 py-1.5 rounded-md shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                                                        <button className="flex items-center gap-1 bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 transition-colors text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-1 sm:py-1.5 rounded-md shadow-[0_0_10px_rgba(6,182,212,0.3)]">
                                                             Resume <ArrowRight size={10} />
                                                         </button>
                                                     </div>
@@ -208,11 +208,11 @@ const CampusTechAccess = () => {
                                     <BookOpen size={14} className="text-cyan-400" />
                                     <span>About The Ecosystem</span>
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">Program Overview</h2>
-                                <p className="text-lg leading-relaxed text-slate-400">
+                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight">Program Overview</h2>
+                                <p className="text-base sm:text-lg leading-relaxed text-slate-400">
                                     The Campus Tech Access Program is a subscription-based digital learning ecosystem designed to provide students with affordable, long-term access to high-demand technology skills.
                                 </p>
-                                <p className="text-lg leading-relaxed text-slate-400">
+                                <p className="text-base sm:text-lg leading-relaxed text-slate-400 font-medium">
                                     The platform follows a self-paced, recorded-first learning model, enabling students to learn at their convenience without fixed schedules or live class dependencies.
                                 </p>
                             </div>
@@ -255,8 +255,8 @@ const CampusTechAccess = () => {
                             <Star size={14} className="text-yellow-400" />
                             <span>Transparent Value</span>
                         </div>
-                        <h2 className="text-4xl font-extrabold text-white">Pricing Structure</h2>
-                        <p className="text-lg text-slate-400 max-w-2xl mx-auto">Incredible value structured specifically to make high-end technology education accessible for campus students.</p>
+                        <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Pricing Structure</h2>
+                        <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">Incredible value structured specifically to make high-end technology education accessible for campus students.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto relative z-10">
@@ -267,7 +267,7 @@ const CampusTechAccess = () => {
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
                             className="relative group rounded-[2rem] p-[2px] overflow-hidden"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-cyan-600 to-purple-600 opacity-60 group-hover:opacity-100 transition-opacity duration-500 animate-[spin_4s_linear_infinite] group-hover:animate-none"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-cyan-600 to-purple-600 opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
                             {/* Inner gradient to stop the full spin from being too crazy and make it edge only */}
                             <div className="absolute inset-0 bg-black/80 rounded-[2rem] z-0"></div>
 
@@ -382,7 +382,7 @@ const CampusTechAccess = () => {
                 </Motion.section>
 
                 {/* SECTION 3 & 4 – Access & Learning Model */}
-                <section className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto pt-10 px-4 md:px-0">
+                <section className="grid sm:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto pt-8 md:pt-12">
                     <Motion.div
                         initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
                         className="p-[1px] rounded-[2rem] bg-gradient-to-br from-cyan-500/30 to-white/5 relative group hover:from-cyan-400/50 hover:to-white/10 transition-colors duration-500"
@@ -440,8 +440,8 @@ const CampusTechAccess = () => {
                             <Code2 size={14} className="text-purple-400" />
                             <span>Structured Flexibility</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white">Learning Structure</h2>
-                        <p className="text-lg text-slate-400">Pave your own path. Follow our recommended sequence or explore domains freely within your active subscription.</p>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">Learning Structure</h2>
+                        <p className="text-base sm:text-lg text-slate-400">Pave your own path. Follow our recommended sequence or explore domains freely within your active subscription.</p>
                     </div>
 
                     <div className="grid lg:grid-cols-3 gap-6">
@@ -506,10 +506,10 @@ const CampusTechAccess = () => {
                     className="space-y-12 max-w-6xl mx-auto pt-10"
                 >
                     <div className="text-center space-y-4">
-                        <h2 className="text-3xl font-bold text-white">Included in Base Subscription</h2>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white">Included in Base Subscription</h2>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
                             { icon: MonitorPlay, text: "Recorded video lessons", color: "from-blue-500/20 to-transparent", border: "hover:border-blue-500/50" },
                             { icon: BookMarked, text: "Structured learning paths", color: "from-purple-500/20 to-transparent", border: "hover:border-purple-500/50" },
@@ -604,8 +604,8 @@ const CampusTechAccess = () => {
                             <Briefcase size={14} className="text-cyan-400" />
                             <span>Future Pathways</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white">Outcomes & Opportunities</h2>
-                        <p className="text-lg text-slate-400 max-w-2xl mx-auto">Platform facilitates exposure and merit-based opportunities, but true success depends on your consistency and effort.</p>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">Outcomes & Opportunities</h2>
+                        <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">Platform facilitates exposure and merit-based opportunities, but true success depends on your consistency and effort.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -689,7 +689,7 @@ const CampusTechAccess = () => {
                         <div className="space-y-8 relative z-10">
                             <div>
                                 <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-4">Platform Philosophy</h3>
-                                <p className="text-slate-300 leading-relaxed text-lg">Designed as a digital learning infrastructure, skill development ecosystem, and continuous practice environment, not a traditional coaching institute.</p>
+                                <p className="text-slate-300 leading-relaxed text-base sm:text-lg">Designed as a digital learning infrastructure, skill development ecosystem, and continuous practice environment, not a traditional coaching institute.</p>
                             </div>
 
                             <div className="space-y-5 bg-black/20 p-6 rounded-[1.5rem] border border-white/5">
@@ -710,11 +710,22 @@ const CampusTechAccess = () => {
                                 <h4 className="font-bold text-xl text-white mb-6 flex items-center gap-2">
                                     <Users size={20} className="text-cyan-400" /> The Ideal Student Profile
                                 </h4>
-                                <div className="flex flex-wrap gap-3">
-                                    {["Prefers self-paced learning", "Values affordability", "Comfortable with recorded content", "Self-driven", "Practice-oriented"].map((tag, i) => (
-                                        <span key={i} className="px-4 py-2 rounded-full bg-gradient-to-r from-white/5 to-white/10 border border-white/10 text-sm font-medium text-slate-200 shadow-sm hover:border-cyan-500/30 transition-colors">
-                                            {tag}
-                                        </span>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    {[
+                                        { text: "Prefers self-paced learning", icon: Clock, color: "text-blue-400", bg: "bg-blue-500/10" },
+                                        { text: "Values affordability", icon: Zap, color: "text-yellow-400", bg: "bg-yellow-500/10" },
+                                        { text: "Comfortable with recorded content", icon: MonitorPlay, color: "text-purple-400", bg: "bg-purple-500/10" },
+                                        { text: "Self-driven", icon: Target, color: "text-red-400", bg: "bg-red-500/10" },
+                                        { text: "Practice-oriented", icon: Code2, color: "text-cyan-400", bg: "bg-cyan-500/10" }
+                                    ].map((tag, i) => (
+                                        <div key={i} className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group">
+                                            <div className={`w-8 h-8 rounded-lg ${tag.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
+                                                <tag.icon size={16} className={tag.color} />
+                                            </div>
+                                            <span className="text-sm font-medium text-slate-200">
+                                                {tag.text}
+                                            </span>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -742,7 +753,7 @@ const CampusTechAccess = () => {
                             <HelpCircle size={14} className="text-purple-400" />
                             <span>Clarifications</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white">Frequently Asked Questions</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">Frequently Asked Questions</h2>
                     </div>
 
                     <div className="max-w-3xl mx-auto space-y-3">
@@ -777,9 +788,9 @@ const CampusTechAccess = () => {
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.3, ease: "easeInOut" }}
                                         >
-                                            <div className="px-5 pb-5 pt-0 pl-14">
+                                            <div className="px-5 pb-5 pt-0 sm:pl-14">
                                                 <div className="h-px w-full bg-white/10 mb-4"></div>
-                                                <p className="text-slate-300 text-xs md:text-sm leading-relaxed">{faq.a}</p>
+                                                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">{faq.a}</p>
                                             </div>
                                         </Motion.div>
                                     )}
