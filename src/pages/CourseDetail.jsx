@@ -62,13 +62,15 @@ const CourseDetail = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm mb-6`}>
-                            {typeof course.icon === 'string' ? (
-                                <img src={course.icon} alt={course.title} className="w-4 h-4 object-cover" />
-                            ) : (
-                                <course.icon className="w-4 h-4 text-secondary" />
-                            )}
-                            <span className="text-secondary font-medium">{course.subtitle}</span>
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm mb-8 hover:bg-white/10 transition-colors group cursor-default">
+                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 overflow-hidden shrink-0 border border-white/10">
+                                {typeof course.icon === 'string' ? (
+                                    <img src={course.icon} alt={course.title} className="w-full h-full object-contain" />
+                                ) : (
+                                    <course.icon className="w-4 h-4 text-secondary" />
+                                )}
+                            </div>
+                            <span className="text-secondary font-semibold tracking-wide">{course.subtitle}</span>
                         </div>
                         <h1 className="text-3xl md:text-6xl font-bold font-heading text-white mb-4 md:mb-6">
                             {course.title}
