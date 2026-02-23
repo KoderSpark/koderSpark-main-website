@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
     CheckCircle2, MonitorPlay, Infinity as InfinityIcon, CalendarDays,
     BookOpen, BookMarked, Code2, Users, FileDigit,
@@ -9,9 +9,17 @@ import {
     HelpCircle, XCircle, ArrowRight, Laptop, Star, Cpu, Target, Bell,
     ChevronDown, Building2
 } from 'lucide-react';
+import Chatbot from '../components/Chatbot';
 
 const CampusTechAccess = () => {
+    const navigate = useNavigate();
     const [openFaq, setOpenFaq] = useState(null);
+
+    const handleStartPlan = (planName, price) => {
+        const planDetails = `I am interested in the ${planName} plan (${price}/year).`;
+
+        navigate('/contact', { state: { message: planDetails } });
+    };
 
     // Animation variants
     const fadeIn = {
@@ -318,7 +326,10 @@ const CampusTechAccess = () => {
                                     </li>
                                 </ul>
 
-                                <button className="w-full py-4 relative group/btn overflow-hidden rounded-xl bg-cyan-500 text-white font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-300">
+                                <button
+                                    onClick={() => handleStartPlan('Base Subscription', '₹365')}
+                                    className="w-full py-4 relative group/btn overflow-hidden rounded-xl bg-cyan-500 text-white font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-300"
+                                >
                                     <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
                                     <span className="relative z-10 flex items-center justify-center gap-2">Start Base Plan <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" /></span>
                                 </button>
@@ -373,7 +384,10 @@ const CampusTechAccess = () => {
                                     </li>
                                 </ul>
 
-                                <button className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 flex items-center justify-center gap-2">
+                                <button
+                                    onClick={() => handleStartPlan('Mentorship Add-On', '₹1,999')}
+                                    className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 flex items-center justify-center gap-2"
+                                >
                                     Explore Mentorship <ArrowRight size={18} className="opacity-50" />
                                 </button>
                             </div>
@@ -834,7 +848,10 @@ const CampusTechAccess = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full max-w-md md:max-w-none">
-                            <button className="px-6 py-3 w-full sm:w-48 text-sm rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-extrabold hover:from-cyan-400 hover:to-blue-400 transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:-translate-y-0.5">
+                            <button
+                                onClick={() => handleStartPlan('Base Subscription', '₹365')}
+                                className="px-6 py-3 w-full sm:w-48 text-sm rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-extrabold hover:from-cyan-400 hover:to-blue-400 transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:-translate-y-0.5"
+                            >
                                 Subscribe Now
                             </button>
                             <Link to="/contact" className="px-6 py-3 w-full sm:w-48 text-sm rounded-xl bg-white/5 border border-white/20 text-white font-bold hover:bg-white/10 hover:border-white/30 transition-all backdrop-blur-md hover:-translate-y-0.5 flex items-center justify-center">
@@ -848,7 +865,7 @@ const CampusTechAccess = () => {
                         <div className="text-center leading-tight">Features may evolve to improve learning experience.</div>
                     </div>
                 </Motion.section>
-
+                <Chatbot />
             </div>
         </div>
     );
