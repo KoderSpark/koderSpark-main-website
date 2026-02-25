@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
+import { useSocket } from '../hooks/useSocket';
 import { Loader2, User, Mail, GraduationCap, MapPin, Camera, CheckCircle2, ShieldCheck, Phone, Globe, Calendar, Info, BookOpen, LogOut } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -12,29 +13,25 @@ export default function StudentProfile() {
     useEffect(() => {
         const fetchStudentData = async () => {
             const storedUser = sessionStorage.getItem('currentUser');
-            if (!storedUser) {
-                navigate('/studentloginks');
-                return;
-            }
-
+            if (!storedUser) { navigate('/studentloginks'); return; }
             const parsedUser = JSON.parse(storedUser);
+
+            // ⚡ Show cached data instantly
+            setStudent(parsedUser);
+            setLoading(false);
+
+            // Refresh in background
             try {
                 const { data } = await api.get(`/admin/students?email=${parsedUser.email}`);
-                if (data.length > 0) {
-                    setStudent(data[0]);
-                } else {
-                    setStudent(parsedUser);
-                }
-            } catch (error) {
-                console.error("Failed to fetch student data:", error);
-                toast.error("Failed to load profile");
-            } finally {
-                setLoading(false);
-            }
+                if (data.length > 0) setStudent(data[0]);
+            } catch { /* keep showing cached */ }
         };
-
         fetchStudentData();
     }, [navigate]);
+
+    useSocket({
+        'student:updated': (updated) => setStudent(updated),
+    });
 
     const handleLogout = () => {
         sessionStorage.removeItem('currentUser');

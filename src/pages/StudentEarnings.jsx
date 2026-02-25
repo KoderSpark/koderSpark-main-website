@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
+import { useSocket } from '../hooks/useSocket';
 import { Loader2, IndianRupee, TrendingUp, BookOpen, Calendar, ArrowUpRight, Wallet, History } from 'lucide-react';
-import toast from 'react-hot-toast';
 
 export default function StudentEarnings() {
     const navigate = useNavigate();
@@ -12,29 +12,28 @@ export default function StudentEarnings() {
     useEffect(() => {
         const fetchStudentData = async () => {
             const storedUser = sessionStorage.getItem('currentUser');
-            if (!storedUser) {
-                navigate('/studentloginks');
-                return;
-            }
-
+            if (!storedUser) { navigate('/studentloginks'); return; }
             const parsedUser = JSON.parse(storedUser);
+
+            // ⚡ Show cached data instantly
+            setStudent(parsedUser);
+            setLoading(false);
+
+            // Silently refresh in background
             try {
                 const { data } = await api.get(`/admin/students?email=${parsedUser.email}`);
-                if (data.length > 0) {
-                    setStudent(data[0]);
-                } else {
-                    setStudent(parsedUser);
-                }
-            } catch (error) {
-                console.error("Failed to fetch earnings data:", error);
-                toast.error("Failed to load earnings");
-            } finally {
-                setLoading(false);
-            }
+                if (data.length > 0) setStudent(data[0]);
+            } catch { /* keep showing cached */ }
         };
-
         fetchStudentData();
     }, [navigate]);
+
+    // Live update via WebSocket
+    useSocket({
+        'student:updated': (updated) => {
+            setStudent(updated);
+        },
+    });
 
     if (loading) {
         return (

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
+import { useSocket } from '../hooks/useSocket';
 import { Loader2, ClipboardList, Clock, CheckCircle2, ChevronDown, ChevronUp, ExternalLink, X, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -180,30 +181,51 @@ export default function StudentTasks() {
     const [loading, setLoading] = useState(true);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-    useEffect(() => {
-        const fetchTasks = async () => {
-            const storedUser = sessionStorage.getItem('currentUser');
-            if (!storedUser) {
-                navigate('/studentloginks');
-                return;
-            }
+    const fetchTasks = useCallback(async () => {
+        const storedUser = sessionStorage.getItem('currentUser');
+        if (!storedUser) { navigate('/studentloginks'); return; }
+        const parsedUser = JSON.parse(storedUser);
 
-            const parsedUser = JSON.parse(storedUser);
+        // ⚡ Show cached tasks from sessionStorage immediately
+        const cached = sessionStorage.getItem(`tasks_${parsedUser.email}`);
+        if (cached) {
+            setTasks(JSON.parse(cached));
+            setLoading(false);
+        }
+
+        // Silently fetch fresh
+        try {
+            const { data } = await api.get(`/admin/students?email=${parsedUser.email}`);
+            if (data.length > 0) {
+                const freshTasks = data[0].tasks || [];
+                setTasks(freshTasks);
+                sessionStorage.setItem(`tasks_${parsedUser.email}`, JSON.stringify(freshTasks));
+            }
+        } catch {
+            if (!cached) toast.error('Failed to load tasks');
+        } finally {
+            setLoading(false);
+        }
+    }, [navigate]);
+
+    useEffect(() => { fetchTasks(); }, [fetchTasks, refreshTrigger]);
+
+    // Live update via WebSocket
+    useSocket({
+        'tasks:updated': (student) => {
+            const tasks = student.tasks || [];
+            setTasks(tasks);
+            // Update cache too
             try {
-                const { data } = await api.get(`/admin/students?email=${parsedUser.email}`);
-                if (data.length > 0) {
-                    setTasks(data[0].tasks || []);
+                const raw = sessionStorage.getItem('currentUser');
+                if (raw) {
+                    const { email } = JSON.parse(raw);
+                    sessionStorage.setItem(`tasks_${email}`, JSON.stringify(tasks));
                 }
-            } catch (error) {
-                console.error("Failed to fetch student tasks:", error);
-                toast.error("Failed to load tasks");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchTasks();
-    }, [navigate, refreshTrigger]);
+            } catch { /* ignore */ }
+            toast.success('Tasks updated!', { icon: '📋' });
+        },
+    });
 
     if (loading) {
         return (

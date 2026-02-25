@@ -26,6 +26,9 @@ import AdminStudentSearch from './pages/admin/AdminStudentSearch';
 import AdminStudentPayment from './pages/admin/AdminStudentPayment';
 import AdminTasks from './pages/admin/AdminTasks';
 import AdminLogin from './pages/admin/AdminLogin';
+import AdminJobs from './pages/admin/AdminJobs';
+import AdminInternships from './pages/admin/AdminInternships';
+import AdminHackathons from './pages/admin/AdminHackathons';
 import StudentDashboard from './pages/StudentDashboard';
 import StudentLayout from './pages/StudentLayout';
 import StudentClasses from './pages/StudentClasses';
@@ -33,6 +36,10 @@ import StudentTasks from './pages/StudentTasks';
 import StudentProfile from './pages/StudentProfile';
 import StudentEarnings from './pages/StudentEarnings';
 import StudentReferral from './pages/StudentReferral';
+import StudentJobs from './pages/StudentJobs';
+import StudentInternships from './pages/StudentInternships';
+import StudentHackathon from './pages/StudentHackathon';
+import PostingDetail from './pages/PostingDetail';
 import NotFound from './pages/NotFound';
 
 function MainLayout() {
@@ -89,6 +96,9 @@ function App() {
                     <Route path="search" element={<AdminStudentSearch />} />
                     <Route path="payments" element={<AdminStudentPayment />} />
                     <Route path="tasks" element={<AdminTasks />} />
+                    <Route path="jobs" element={<AdminJobs />} />
+                    <Route path="internships" element={<AdminInternships />} />
+                    <Route path="hackathons" element={<AdminHackathons />} />
                 </Route>
 
                 {/* Student Login (No Layout) */}
@@ -103,6 +113,10 @@ function App() {
                     <Route path="earnings" element={<StudentEarnings />} />
                     <Route path="refer-earn" element={<StudentReferral />} />
                     <Route path="profile" element={<StudentProfile />} />
+                    <Route path="career/jobs" element={<StudentJobs />} />
+                    <Route path="career/internships" element={<StudentInternships />} />
+                    <Route path="hackathon" element={<StudentHackathon />} />
+                    <Route path="posting" element={<PostingDetail />} />
                 </Route>
 
                 {/* Public Routes */}

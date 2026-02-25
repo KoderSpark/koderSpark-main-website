@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { LayoutDashboard, Users, LogOut, Search, IndianRupee, ChevronLeft, ChevronRight, Menu, X, ClipboardList } from 'lucide-react';
+import { LayoutDashboard, Users, LogOut, Search, IndianRupee, ChevronLeft, ChevronRight, Menu, X, ClipboardList, Briefcase, GraduationCap, Trophy } from 'lucide-react';
 
 export default function AdminLayout() {
     const location = useLocation();
@@ -25,6 +25,9 @@ export default function AdminLayout() {
         { path: '/ks-admin/search', icon: Search, label: 'Search' },
         { path: '/ks-admin/payments', icon: IndianRupee, label: 'Payments' },
         { path: '/ks-admin/tasks', icon: ClipboardList, label: 'Tasks' },
+        { path: '/ks-admin/jobs', icon: Briefcase, label: 'Jobs' },
+        { path: '/ks-admin/internships', icon: GraduationCap, label: 'Internships' },
+        { path: '/ks-admin/hackathons', icon: Trophy, label: 'Hackathons' },
     ];
 
     return (

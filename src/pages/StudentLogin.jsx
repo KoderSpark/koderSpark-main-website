@@ -43,6 +43,12 @@ export default function StudentLogin() {
         setSearchParams({ step: newStep });
     };
 
+    // ⚡ Auto-redirect if already logged in
+    useEffect(() => {
+        const current = sessionStorage.getItem('currentUser');
+        if (current) navigate('/student/dashboard', { replace: true });
+    }, [navigate]);
+
     // Load data from Session Storage on Mount
     useEffect(() => {
         const storedStudent = sessionStorage.getItem('studentAuthData');
@@ -121,11 +127,9 @@ export default function StudentLogin() {
             // Login Success
             toast.success("Login successful!");
 
-            // Store auth data if needed (e.g. for a protected route) - or just navigate
-            // localStorage.setItem('token', data.token); 
+            // Store FULL student data so dashboard pages load from cache
             sessionStorage.setItem('currentUser', JSON.stringify(data.student));
-
-            navigate('/student/dashboard'); // Navigate to new standalone Dashboard
+            navigate('/student/dashboard');
 
         } catch (error) {
             console.error(error);
