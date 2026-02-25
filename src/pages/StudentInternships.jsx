@@ -9,11 +9,19 @@ export default function StudentInternships() {
     const navigate = useNavigate();
     const [internships, setInternships] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [appliedIds, setAppliedIds] = useState([]);
 
     const fetchInternships = useCallback(async () => {
         try {
             const { data } = await api.get('/postings?type=internship');
             setInternships(data);
+
+            // Fetch applied mappings from current user
+            const storedUser = sessionStorage.getItem('currentUser');
+            if (storedUser) {
+                const student = JSON.parse(storedUser);
+                setAppliedIds(student.appliedPostings || []);
+            }
         } catch {
             toast.error('Failed to load internships');
         } finally {
@@ -67,6 +75,7 @@ export default function StudentInternships() {
                 <div className="space-y-4">
                     {internships.map(item => {
                         const expired = isExpired(item.untilDate);
+                        const hasApplied = appliedIds.includes(item._id);
                         return (
                             <div
                                 key={item._id}
@@ -86,21 +95,33 @@ export default function StudentInternships() {
                                             <ImageIcon className="w-8 h-8 text-purple-500/20" />
                                         </div>
                                     )}
-                                    {/* Closed badge on image */}
-                                    {expired && (
-                                        <div className="absolute top-2 left-2 px-2 py-0.5 bg-red-500/80 text-white text-[9px] font-black uppercase tracking-widest rounded-full">
-                                            Closed
-                                        </div>
-                                    )}
+                                    {/* Overlay badges on image */}
+                                    <div className="absolute top-2 left-2 flex flex-col gap-1.5">
+                                        {expired && (
+                                            <div className="px-2 py-0.5 bg-red-500/80 text-white text-[9px] font-black uppercase tracking-widest rounded-full">
+                                                Closed
+                                            </div>
+                                        )}
+                                        {hasApplied && (
+                                            <div className="px-2 py-0.5 bg-emerald-500/80 text-white text-[9px] font-black uppercase tracking-widest rounded-full">
+                                                Applied
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Right: Content */}
                                 <div className="flex-1 p-5 flex flex-col justify-between gap-3 min-w-0">
                                     <div className="space-y-2">
                                         {/* Type Badge */}
-                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full">
-                                            <GraduationCap className="w-3 h-3 text-purple-400" />
-                                            <span className="text-[9px] font-black text-purple-400 uppercase tracking-widest">Internship</span>
+                                        <div className="flex items-center justify-between">
+                                            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full">
+                                                <GraduationCap className="w-3 h-3 text-purple-400" />
+                                                <span className="text-[9px] font-black text-purple-400 uppercase tracking-widest">Internship</span>
+                                            </div>
+                                            {hasApplied && (
+                                                <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest">Applied</span>
+                                            )}
                                         </div>
                                         {/* Title */}
                                         <h3 className="text-base md:text-lg font-black text-white uppercase tracking-tighter leading-tight">

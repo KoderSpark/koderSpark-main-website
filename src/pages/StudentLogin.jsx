@@ -154,7 +154,7 @@ export default function StudentLogin() {
 
         setLoading(true);
         try {
-            await api.put('/student/complete-profile', {
+            const { data } = await api.put('/student/complete-profile', {
                 id: studentData._id,
                 ...formData,
                 password: formData.createPassword // Send the new password
@@ -163,8 +163,8 @@ export default function StudentLogin() {
             // CLEAR Session Storage on success
             sessionStorage.removeItem('studentAuthData');
 
-            // Log them in automatically
-            sessionStorage.setItem('currentUser', JSON.stringify({ email: studentData.email, fullName: studentData.fullName }));
+            // Log them in automatically with the FULL student object returned from API
+            sessionStorage.setItem('currentUser', JSON.stringify(data.student));
 
             navigate('/student/dashboard');
         } catch (error) {

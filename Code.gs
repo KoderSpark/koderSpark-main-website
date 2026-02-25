@@ -1,63 +1,74 @@
-const SHEET_NAME = "studentdata";
-
 function doPost(e) {
-  const lock = LockService.getScriptLock();
-  lock.tryLock(10000);
-
   try {
-    const doc = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = doc.getSheetByName(SHEET_NAME);
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    if (!ss) throw new Error("Spreadsheet not found. Please ensure the script is bound to a spreadsheet.");
 
-    if (!sheet) {
-      sheet = doc.insertSheet(SHEET_NAME);
-      // Add headers if new sheet
-      sheet.appendRow(["Date", "Full Name", "College Name", "Branch", "Graduation Status", "Batch", "Semester", "Phone", "Email"]);
+    // Determine sheet name
+    var sheet = ss.getSheetByName("Sheet1") || ss.getSheets()[0];
+    if (!sheet) sheet = ss.insertSheet("Sheet1");
+
+    // Parse data
+    var data = {};
+    try {
+      data = JSON.parse(e.postData.contents);
+    } catch (f) {
+      // Fallback for form-encoded data
+      data = e.parameter;
     }
-
-    const data = JSON.parse(e.postData.contents);
     
-    // Check for duplicates (optional, based on email)
-    // const emailColumn = 9; // Adjusted for new column
-    // const emails = sheet.getRange(2, emailColumn, sheet.getLastRow(), 1).getValues().flat();
-    // if (emails.includes(data.email)) {
-    //   return ContentService
-    //     .createTextOutput(JSON.stringify({ "result": "error", "error": "Email already exists" }))
-    //     .setMimeType(ContentService.MimeType.JSON);
-    // }
-
-    const nextRow = sheet.getLastRow() + 1;
-    const newRow = [
-      new Date(),             // Date
-      data.fullName,          // Full Name
-      data.collegeName,       // College Name
-      data.branch,            // Branch
-      data.graduationStatus,  // Graduation Status
-      data.batch || "",       // Batch (NEW - Optional)
-      data.semester || "",    // Semester (Optional)
-      "'" + data.phone,       // Phone (store as string)
-      data.email              // Email
+    var headers = [
+      "Date Applied", 
+      "Opportunity Title", 
+      "Type", 
+      "Student Name", 
+      "Email", 
+      "Phone", 
+      "College", 
+      "Course"
     ];
 
-    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+    // Check if headers exist
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#f0f0f0");
+      sheet.setFrozenRows(1);
+    }
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ "result": "success", "row": nextRow }))
-      .setMimeType(ContentService.MimeType.JSON);
+    // Append the student's data
+    sheet.appendRow([
+      data.appliedAt || new Date().toLocaleString(),
+      data.opportunityTitle || "N/A",
+      data.opportunityType || "N/A",
+      data.studentName || "N/A",
+      data.studentEmail || "N/A",
+      data.studentPhone || "N/A",
+      data.studentCollege || "N/A",
+      data.studentCourse || "N/A"
+    ]);
 
-  } catch (e) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ "result": "error", "error": e.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
-  } finally {
-    lock.releaseLock();
+    return ContentService.createTextOutput("Success")
+      .setMimeType(ContentService.MimeType.TEXT);
+      
+  } catch (err) {
+    return ContentService.createTextOutput("Error: " + err.message)
+      .setMimeType(ContentService.MimeType.TEXT);
   }
 }
 
-function setup() {
-    const doc = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = doc.getSheetByName(SHEET_NAME);
-    if (!sheet) {
-        sheet = doc.insertSheet(SHEET_NAME);
-        sheet.appendRow(["Date", "Full Name", "College Name", "Branch", "Graduation Status", "Batch", "Semester", "Phone", "Email"]);
-    }
+// Ensure the sheet is ready
+function setupSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName("Sheet1") || ss.getSheets()[0];
+  if (!sheet) sheet = ss.insertSheet("Sheet1");
+  
+  var headers = ["Date Applied", "Opportunity Title", "Type", "Student Name", "Email", "Phone", "College", "Course"];
+  
+  sheet.clear();
+  sheet.appendRow(headers);
+  sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#f0f0f0");
+  sheet.setFrozenRows(1);
+}
+
+function doGet() {
+  return ContentService.createTextOutput("Koderspark Script is Live and Ready!");
 }

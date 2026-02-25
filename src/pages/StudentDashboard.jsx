@@ -294,10 +294,14 @@ export default function StudentDashboard() {
 
             {/* TW Helper */}
             <div className="hidden">
-                <div className="bg-blue-500 border-blue-500 text-blue-500 shadow-blue-500/5 bg-blue-500/10 border-blue-500/20 shadow-blue-500/50 bg-blue-500/50" />
-                <div className="bg-purple-500 border-purple-500 text-purple-500 shadow-purple-500/5 bg-purple-500/10 border-purple-500/20 shadow-purple-500/50 bg-purple-500/50" />
-                <div className="bg-emerald-500 border-emerald-500 text-emerald-500 shadow-emerald-500/5 bg-emerald-500/10 border-emerald-500/20 shadow-emerald-500/50 bg-emerald-500/50" />
-                <div className="bg-amber-500 border-amber-500 text-amber-500 shadow-amber-500/5 bg-amber-500/10 border-amber-500/20 shadow-amber-500/50 bg-amber-500/50" />
+                <div className="bg-blue-500 border-blue-500 text-blue-500 shadow-blue-500/50 bg-blue-500/10 border-blue-500/20" />
+                <div className="shadow-blue-500/5 bg-blue-500/50" />
+                <div className="bg-purple-500 border-purple-500 text-purple-500 shadow-purple-500/50 bg-purple-500/10 border-purple-500/20" />
+                <div className="shadow-purple-500/5 bg-purple-500/50" />
+                <div className="bg-emerald-500 border-emerald-500 text-emerald-500 shadow-emerald-500/50 bg-emerald-500/10 border-emerald-500/20" />
+                <div className="shadow-emerald-500/5 bg-emerald-500/50" />
+                <div className="bg-amber-500 border-amber-500 text-amber-500 shadow-amber-500/50 bg-amber-500/10 border-amber-500/20" />
+                <div className="shadow-amber-500/5 bg-amber-500/50" />
             </div>
         </div>
     );

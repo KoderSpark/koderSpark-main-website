@@ -12,11 +12,19 @@ export default function StudentHackathon() {
     const [hackathons, setHackathons] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('upcoming');
+    const [appliedIds, setAppliedIds] = useState([]);
 
     const fetchHackathons = useCallback(async () => {
         try {
             const { data } = await api.get('/postings?type=hackathon');
             setHackathons(data);
+
+            // Fetch applied mappings from current user
+            const storedUser = sessionStorage.getItem('currentUser');
+            if (storedUser) {
+                const student = JSON.parse(storedUser);
+                setAppliedIds(student.appliedPostings || []);
+            }
         } catch {
             toast.error('Failed to load hackathons');
         } finally {
@@ -107,66 +115,81 @@ export default function StudentHackathon() {
                 </div>
             ) : (
                 <div className="space-y-4">
-                    {displayed.map(item => (
-                        <div
-                            key={item._id}
-                            onClick={() => navigate('/student/posting', { state: { posting: { ...item, type: 'hackathon' } } })}
-                            className={`group flex flex-row items-stretch bg-surface/30 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer hover:bg-surface/50 hover:scale-[1.01] ${filter === 'upcoming'
-                                ? 'border-white/10 hover:border-amber-500/20'
-                                : 'border-white/5 opacity-75 hover:opacity-90'
-                                }`}
-                        >
-                            {/* Left: Image */}
-                            <div className="w-36 md:w-52 flex-shrink-0 relative overflow-hidden bg-amber-500/5">
-                                {item.image ? (
-                                    <img
-                                        src={item.image}
-                                        alt={item.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center min-h-[120px]">
-                                        <Trophy className="w-10 h-10 text-amber-500/20" />
+                    {displayed.map(item => {
+                        const hasApplied = appliedIds.includes(item._id);
+                        return (
+                            <div
+                                key={item._id}
+                                onClick={() => navigate('/student/posting', { state: { posting: { ...item, type: 'hackathon' } } })}
+                                className={`group flex flex-row items-stretch bg-surface/30 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer hover:bg-surface/50 hover:scale-[1.01] ${filter === 'upcoming'
+                                    ? 'border-white/10 hover:border-amber-500/20'
+                                    : 'border-white/5 opacity-75 hover:opacity-90'
+                                    }`}
+                            >
+                                {/* Left: Image */}
+                                <div className="w-36 md:w-52 flex-shrink-0 relative overflow-hidden bg-amber-500/5">
+                                    {item.image ? (
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center min-h-[120px]">
+                                            <Trophy className="w-10 h-10 text-amber-500/20" />
+                                        </div>
+                                    )}
+                                    {/* Overlay badges on image */}
+                                    <div className="absolute top-2 left-2 flex flex-col gap-1.5">
+                                        <div className={`px-2 py-0.5 text-[9px] font-black uppercase tracking-widest rounded-full ${filter === 'upcoming'
+                                            ? 'bg-green-500/80 text-white'
+                                            : 'bg-slate-600/80 text-white'
+                                            }`}>
+                                            {filter === 'upcoming' ? 'Upcoming' : 'Past'}
+                                        </div>
+                                        {hasApplied && (
+                                            <div className="px-2 py-0.5 bg-emerald-500/80 text-white text-[9px] font-black uppercase tracking-widest rounded-full">
+                                                Registered
+                                            </div>
+                                        )}
                                     </div>
-                                )}
-                                {/* Status badge */}
-                                <div className={`absolute top-2 left-2 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest rounded-full ${filter === 'upcoming'
-                                    ? 'bg-green-500/80 text-white'
-                                    : 'bg-slate-600/80 text-white'
-                                    }`}>
-                                    {filter === 'upcoming' ? '🟢 Upcoming' : '⚫ Past'}
-                                </div>
-                            </div>
-
-                            {/* Right: Content */}
-                            <div className="flex-1 p-5 flex flex-col justify-between gap-3 min-w-0">
-                                <div className="space-y-2">
-                                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full">
-                                        <Trophy className="w-3 h-3 text-amber-400" />
-                                        <span className="text-[9px] font-black text-amber-400 uppercase tracking-widest">Hackathon</span>
-                                    </div>
-                                    <h3 className="text-base md:text-lg font-black text-white uppercase tracking-tighter leading-tight">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-slate-400 text-sm leading-relaxed line-clamp-2">
-                                        {item.description}
-                                    </p>
                                 </div>
 
-                                {/* Dates */}
-                                <div className="flex flex-wrap items-center gap-4 pt-3 border-t border-white/5">
-                                    <span className="flex items-center gap-1.5 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-                                        <CalendarDays className="w-3.5 h-3.5" />
-                                        Announced: {fmt(item.postedDate)}
-                                    </span>
-                                    <span className={`flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest ${filter === 'upcoming' ? 'text-amber-400' : 'text-slate-500'}`}>
-                                        <Clock className="w-3.5 h-3.5" />
-                                        Event: {fmt(item.untilDate)}
-                                    </span>
+                                {/* Right: Content */}
+                                <div className="flex-1 p-5 flex flex-col justify-between gap-3 min-w-0">
+                                    <div className="space-y-2">
+                                        <div className="flex items-center justify-between">
+                                            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full">
+                                                <Trophy className="w-3 h-3 text-amber-400" />
+                                                <span className="text-[9px] font-black text-amber-400 uppercase tracking-widest">Hackathon</span>
+                                            </div>
+                                            {hasApplied && (
+                                                <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest">Registered</span>
+                                            )}
+                                        </div>
+                                        <h3 className="text-base md:text-lg font-black text-white uppercase tracking-tighter leading-tight">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-slate-400 text-sm leading-relaxed line-clamp-2">
+                                            {item.description}
+                                        </p>
+                                    </div>
+
+                                    {/* Dates */}
+                                    <div className="flex flex-wrap items-center gap-4 pt-3 border-t border-white/5">
+                                        <span className="flex items-center gap-1.5 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                                            <CalendarDays className="w-3.5 h-3.5" />
+                                            Announced: {fmt(item.postedDate)}
+                                        </span>
+                                        <span className={`flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest ${filter === 'upcoming' ? 'text-amber-400' : 'text-slate-500'}`}>
+                                            <Clock className="w-3.5 h-3.5" />
+                                            Event: {fmt(item.untilDate)}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             )}
         </div>
