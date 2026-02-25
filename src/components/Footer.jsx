@@ -38,7 +38,7 @@ const Footer = () => {
                         <ul className="space-y-4 text-sm text-slate-400">
                             <li className="flex items-start gap-3">
                                 <MapPin className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
-                                <span>Mayuri Tech Park, KoderSpark, 4th floor, Mangalagiri, Andhra Pradesh 522503</span>
+                                <span>Mayuri Tech Park, Koder Spark, 4th floor, Mangalagiri, Andhra Pradesh 522503</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-secondary shrink-0" />

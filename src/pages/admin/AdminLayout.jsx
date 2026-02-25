@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { LayoutDashboard, Users, LogOut, Search, IndianRupee, ChevronLeft, ChevronRight, Menu, X, ClipboardList, Briefcase, GraduationCap, Trophy } from 'lucide-react';
+import { LayoutDashboard, Users, LogOut, Search, IndianRupee, ChevronLeft, ChevronRight, Menu, X, ClipboardList, Briefcase, GraduationCap, Trophy, BookOpen } from 'lucide-react';
 
 export default function AdminLayout() {
     const location = useLocation();
@@ -28,6 +28,7 @@ export default function AdminLayout() {
         { path: '/ks-admin/jobs', icon: Briefcase, label: 'Jobs' },
         { path: '/ks-admin/internships', icon: GraduationCap, label: 'Internships' },
         { path: '/ks-admin/hackathons', icon: Trophy, label: 'Hackathons' },
+        { path: '/ks-admin/classes', label: 'Classes', icon: BookOpen },
     ];
 
     return (
@@ -35,11 +36,9 @@ export default function AdminLayout() {
 
             {/* Mobile Header */}
             <header className="md:hidden bg-surface/50 backdrop-blur-xl border-b border-white/5 p-4 flex justify-between items-center sticky top-0 z-[90]">
-                <Link to="/">
-                    <h1 className="text-lg font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                        Koderspark<span className="text-secondary">.</span>
-                    </h1>
-                </Link>
+                <h1 className="text-lg font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
+                    Koder Spark<span className="text-secondary">.</span>
+                </h1>
                 <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white">
                     {mobileMenuOpen ? <X /> : <Menu />}
                 </button>
@@ -52,11 +51,9 @@ export default function AdminLayout() {
 
             {/* Mobile Sidebar Drawer */}
             <aside className={`fixed inset-y-0 left-0 w-64 bg-surface border-r border-white/5 p-6 z-[100] transform transition-transform duration-300 md:hidden ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <Link to="/" className="mb-8 block" onClick={() => setMobileMenuOpen(false)}>
-                    <h1 className="text-xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                        Koderspark<span className="text-secondary">.</span>
-                    </h1>
-                </Link>
+                <h1 className="text-xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60 mb-8">
+                    Koder Spark<span className="text-secondary">.</span>
+                </h1>
                 <nav className="space-y-2">
                     {navItems.map((item) => (
                         <Link
@@ -95,17 +92,17 @@ export default function AdminLayout() {
                 </button>
 
                 <div className="mb-12 mt-2 px-2">
-                    <Link to="/" className="block overflow-hidden whitespace-nowrap">
+                    <div className="block overflow-hidden whitespace-nowrap">
                         {isCollapsed ? (
                             <h1 className="text-xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
                                 K<span className="text-secondary">.</span>
                             </h1>
                         ) : (
                             <h1 className="text-xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                                Koderspark<span className="text-secondary">.</span>
+                                Koder Spark<span className="text-secondary">.</span>
                             </h1>
                         )}
-                    </Link>
+                    </div>
                 </div>
 
                 <nav className="space-y-2 flex-1">

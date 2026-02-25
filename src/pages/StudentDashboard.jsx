@@ -1,50 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
-import { Loader2, Code, Layers, Briefcase, Zap, BookOpen, GraduationCap, ArrowRight, Flag, Star, Map, Compass } from 'lucide-react';
+import { Loader2, Code, Layers, Briefcase, Zap, BookOpen, GraduationCap, ArrowRight, Flag, Star, Map, Compass, Rocket, BrainCircuit, Cloud, Shield, BarChart3, Sparkles } from 'lucide-react';
 
 
 const phases = [
     {
         number: "01",
+        phase: "Month 1",
         title: "Frontend Development",
-        description: "Master the basics of web development with modern UI/UX principles.",
+        description: "Master the basics of web development. Build responsive, modern UIs from scratch.",
         icon: Code,
-        skills: ["HTML5 & CSS3", "JavaScript (ES6+)", "React.js", "Tailwind CSS"],
-        projects: ["Personal Portfolio", "Business Landing Page", "Interactive Dashboards"],
+        skills: ["HTML", "CSS", "JavaScript", "React"],
+        projects: ["Personal Portfolio Website", "Responsive Business Landing Page", "Interactive Web Applications"],
         color: "blue",
         alignment: "left"
     },
     {
         number: "02",
+        phase: "Month 2",
         title: "Backend Development",
-        description: "Build robust, scalable server-side applications and APIs.",
+        description: "Build robust server-side applications and RESTful APIs that power real products.",
         icon: Layers,
         skills: ["Node.js", "Express.js", "MongoDB", "RESTful APIs"],
-        projects: ["API Development", "Database Architecture", "Auth Systems"],
+        projects: ["RESTful API Development", "Database Schema Design", "Backend Integration with Frontend"],
         color: "purple",
         alignment: "right"
     },
     {
         number: "03",
-        title: "Advanced Full Stack",
-        description: "Master production-grade features like payments and deployment.",
+        phase: "Month 3",
+        title: "Advanced Concepts",
+        description: "Master production-grade features — auth, payments, deployment and advanced APIs.",
         icon: Briefcase,
-        skills: ["Authentication", "Payment Gateways", "Cloud Deployment", "Security"],
-        projects: ["E-commerce Platform", "SaaS Application", "CI/CD Pipelines"],
+        skills: ["Authentication", "Payment Gateways", "Deployment", "Advanced APIs"],
+        projects: ["Secure Authentication System", "E-commerce Platform with Payments", "Cloud Deployment"],
         color: "emerald",
         alignment: "left"
     },
     {
         number: "04",
-        title: "Generative AI Engineering",
-        description: "Integrate cutting-edge AI capabilities into your applications.",
-        icon: Zap,
-        skills: ["LLM Integration", "Prompt Engineering", "AI Aided Dev", "RAG Pipelines"],
-        projects: ["AI-Powered Web Apps", "Custom Chatbots", "AI Content Generators"],
+        phase: "Month 4",
+        title: "Generative AI Integration",
+        description: "Integrate cutting-edge AI capabilities into your applications and ship AI-powered products.",
+        icon: Rocket,
+        skills: ["Generative AI Concepts", "LLM API Integration", "AI-Powered Features"],
+        projects: ["AI-Enhanced Web Application", "Chatbot Integration", "Content Generation Tools"],
         color: "amber",
         alignment: "right"
     }
+];
+
+const specializations = [
+    { number: "01", title: "Introduction to AI/ML Concepts", icon: BrainCircuit },
+    { number: "02", title: "Cloud Computing Basics", icon: Cloud },
+    { number: "03", title: "Cybersecurity Fundamentals", icon: Shield },
+    { number: "04", title: "Data Science Overview", icon: BarChart3 },
 ];
 
 export default function StudentDashboard() {
@@ -126,7 +137,7 @@ export default function StudentDashboard() {
                                         </div>
                                         <div className="flex-1">
                                             <p className={`text-[10px] font-black text-${phase.color}-500 uppercase tracking-widest mb-1`}>
-                                                Phase {phase.number}
+                                                {phase.phase} · Phase {phase.number}
                                             </p>
                                             <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter leading-none">
                                                 {phase.title}
@@ -199,6 +210,55 @@ export default function StudentDashboard() {
                 </div>
             </div>
 
+            {/* Post-Program Specializations */}
+            <div className="pb-10">
+                <div className="text-center mb-10">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-4 font-bold text-xs text-secondary uppercase tracking-widest">
+                        <Sparkles className="w-4 h-4" />
+                        Post-Program
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-3">
+                        Post-Program <span className="text-secondary">Specializations</span>
+                    </h3>
+                    <p className="text-slate-400 text-sm max-w-xl mx-auto leading-relaxed">
+                        After completing the 4-month core program, you can opt for these advanced specializations to further boost your career.
+                    </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-5">
+                    {specializations.map((spec, index) => (
+                        <div key={index} className="group relative bg-surface/30 backdrop-blur-xl border border-white/5 p-6 md:p-8 rounded-[28px] hover:border-secondary/20 hover:bg-surface/50 transition-all duration-300 overflow-hidden">
+                            <Sparkles className="absolute -right-4 -bottom-4 w-24 h-24 text-white/5 rotate-12 group-hover:scale-110 transition-transform duration-500" />
+
+                            <div className="flex items-start gap-5 relative z-10">
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="text-secondary font-black text-lg">{spec.number}</div>
+                                </div>
+
+                                <div className="flex-1">
+                                    <h4 className="text-base font-black text-white mb-2 group-hover:text-secondary transition-colors uppercase tracking-tight">{spec.title}</h4>
+                                    <div className="flex items-center gap-2 flex-wrap">
+                                        <span className="px-2.5 py-1 rounded-lg text-[10px] uppercase font-black tracking-widest bg-secondary/10 text-secondary border border-secondary/20">
+                                            Extension
+                                        </span>
+                                        <span className="text-xs text-slate-500">Available post-completion</span>
+                                    </div>
+                                </div>
+
+                                <div className="self-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                                    <ArrowRight className="w-5 h-5 text-secondary" />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <p className="text-center mt-8 text-xs text-slate-500 italic flex items-center justify-center gap-2">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Available as optional add-ons. Contact your mentor for pricing.
+                </p>
+            </div>
+
             {/* Support & Community Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
                 <div className="bg-surface/30 backdrop-blur-xl border border-white/5 p-8 rounded-[32px] hover:bg-surface/50 transition-all group relative overflow-hidden">
@@ -221,9 +281,14 @@ export default function StudentDashboard() {
                     </div>
                     <h4 className="text-xl font-black text-white uppercase tracking-tighter mb-2">Vibe Community</h4>
                     <p className="text-slate-400 text-sm mb-6 leading-relaxed">Connect with mentors and peers to share insights and build together.</p>
-                    <button className="flex items-center gap-2 text-[10px] font-black text-secondary uppercase tracking-widest hover:gap-3 transition-all">
+                    <a
+                        href="https://chat.whatsapp.com/LB8e8FY9rNWDsshvp8QU3W"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-[10px] font-black text-secondary uppercase tracking-widest hover:gap-3 transition-all"
+                    >
                         Join WhatsApp <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </a>
                 </div>
             </div>
 

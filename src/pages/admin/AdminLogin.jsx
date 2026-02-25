@@ -48,7 +48,7 @@ export default function AdminLogin() {
                         Admin <span className="text-secondary">Vault</span>
                     </h1>
                     <p className="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em]">
-                        Koderspark Control Center
+                        Koder Spark Control Center
                     </p>
                 </div>
 

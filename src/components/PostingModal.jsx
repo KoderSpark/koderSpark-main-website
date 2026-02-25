@@ -59,7 +59,7 @@ export default function PostingModal({ posting, onClose }) {
     if (!posting) return null;
 
     const whatsappMsg = encodeURIComponent(
-        `Hi! I saw the ${posting.title} ${cfg.label} on Koderspark and I'm interested. Could you share more details?`
+        `Hi! I saw the ${posting.title} ${cfg.label} on Koder spark and I'm interested. Could you share more details?`
     );
 
     return createPortal(

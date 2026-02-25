@@ -29,6 +29,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminJobs from './pages/admin/AdminJobs';
 import AdminInternships from './pages/admin/AdminInternships';
 import AdminHackathons from './pages/admin/AdminHackathons';
+import AdminClasses from './pages/admin/AdminClasses';
 import StudentDashboard from './pages/StudentDashboard';
 import StudentLayout from './pages/StudentLayout';
 import StudentClasses from './pages/StudentClasses';
@@ -99,6 +100,7 @@ function App() {
                     <Route path="jobs" element={<AdminJobs />} />
                     <Route path="internships" element={<AdminInternships />} />
                     <Route path="hackathons" element={<AdminHackathons />} />
+                    <Route path="classes" element={<AdminClasses />} />
                 </Route>
 
                 {/* Student Login (No Layout) */}

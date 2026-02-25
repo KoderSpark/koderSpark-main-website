@@ -66,11 +66,9 @@ export default function StudentLayout() {
 
             {/* ── Mobile Header ── */}
             <header className="md:hidden bg-surface/50 backdrop-blur-xl border-b border-white/5 p-4 flex justify-between items-center sticky top-0 z-[90]">
-                <Link to="/">
-                    <h1 className="text-lg font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                        Koderspark<span className="text-secondary">.</span>
-                    </h1>
-                </Link>
+                <h1 className="text-lg font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
+                    Koder Spark<span className="text-secondary">.</span>
+                </h1>
                 <button onClick={() => setMobileMenuOpen(o => !o)} className="text-white">
                     {mobileMenuOpen ? <X /> : <Menu />}
                 </button>
@@ -84,11 +82,9 @@ export default function StudentLayout() {
             {/* ── Mobile Sidebar ── */}
             <aside className={`fixed inset-y-0 left-0 w-64 bg-surface border-r border-white/5 z-[100] flex flex-col transform transition-transform duration-300 md:hidden ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="p-6 flex-shrink-0">
-                    <Link to="/" className="block mb-8" onClick={() => setMobileMenuOpen(false)}>
-                        <h1 className="text-xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                            Koderspark<span className="text-secondary">.</span>
-                        </h1>
-                    </Link>
+                    <h1 className="text-xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60 mb-8">
+                        Koder Spark<span className="text-secondary">.</span>
+                    </h1>
                 </div>
 
                 {/* Scrollable nav area */}
@@ -175,12 +171,12 @@ export default function StudentLayout() {
 
                 {/* Logo */}
                 <div className="p-6 pb-8 flex-shrink-0">
-                    <Link to="/" className="block overflow-hidden">
+                    <div className="block overflow-hidden">
                         {isCollapsed
                             ? <h1 className="text-2xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60 text-center">K<span className="text-secondary">.</span></h1>
-                            : <h1 className="text-2xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Koderspark<span className="text-secondary">.</span></h1>
+                            : <h1 className="text-2xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Koder Spark<span className="text-secondary">.</span></h1>
                         }
-                    </Link>
+                    </div>
                 </div>
 
                 {/* Scrollable Nav */}

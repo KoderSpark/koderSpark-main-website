@@ -6,7 +6,7 @@ export const projects = [
         image: "/Medi Cost Saver.webp",
         link: "https://www.medicostsaver.com/",
         reviews: [
-            { name: "Ramesh Gupta", role: "Founder", text: "KoderSpark built an intuitive platform that helps thousands of families save on healthcare. Highly recommended!" },
+            { name: "Ramesh Gupta", role: "Founder", text: "Koder Spark built an intuitive platform that helps thousands of families save on healthcare. Highly recommended!" },
             { name: "Srinivas Rao", role: "User", text: "Great initiative! I saved 20% on my father's medicines." },
             { name: "Padma Latha", role: "User", text: "Very easy to use card. Accepted at all major pharmacies in Hyderabad." },
             { name: "Venkatesh K", role: "User", text: "The diagnostic center discounts are really helpful for regular checkups." },
