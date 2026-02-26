@@ -15,6 +15,7 @@ export default function AdminTasks() {
     const [taskDesc, setTaskDesc] = useState('');
     const [taskDeadline, setTaskDeadline] = useState('');
     const [taskDocUrl, setTaskDocUrl] = useState('');
+    const [taskReward, setTaskReward] = useState('');
 
     // Editing State
     const [isEditing, setIsEditing] = useState(false);
@@ -63,7 +64,8 @@ export default function AdminTasks() {
                     title: taskTitle,
                     description: taskDesc,
                     deadline: taskDeadline,
-                    documentUrl: taskDocUrl
+                    documentUrl: taskDocUrl,
+                    reward: taskReward
                 };
             } else {
                 // Add new task
@@ -72,6 +74,7 @@ export default function AdminTasks() {
                     description: taskDesc,
                     deadline: taskDeadline,
                     documentUrl: taskDocUrl,
+                    reward: taskReward,
                     status: 'Pending',
                     createdAt: new Date()
                 };
@@ -90,6 +93,7 @@ export default function AdminTasks() {
             setTaskDesc('');
             setTaskDeadline('');
             setTaskDocUrl('');
+            setTaskReward('');
             setIsEditing(false);
             setEditIndex(null);
         } catch (error) {
@@ -106,6 +110,7 @@ export default function AdminTasks() {
         setTaskDesc(task.description || '');
         setTaskDeadline(task.deadline ? new Date(task.deadline).toISOString().split('T')[0] : '');
         setTaskDocUrl(task.documentUrl || '');
+        setTaskReward(task.reward || '');
         setIsEditing(true);
         setEditIndex(index);
 
@@ -138,6 +143,7 @@ export default function AdminTasks() {
                 setTaskDesc('');
                 setTaskDeadline('');
                 setTaskDocUrl('');
+                setTaskReward('');
             }
         } catch (error) {
             console.error(error);
@@ -206,6 +212,13 @@ export default function AdminTasks() {
                                     value={taskDocUrl}
                                     onChange={(e) => setTaskDocUrl(e.target.value)}
                                 />
+                                <input
+                                    type="text"
+                                    placeholder="Reward (e.g. ₹ 3500)..."
+                                    className="w-full bg-surface/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-secondary focus:outline-none"
+                                    value={taskReward}
+                                    onChange={(e) => setTaskReward(e.target.value)}
+                                />
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-slate-500 ml-1 uppercase">Deadline</label>
                                     <input
@@ -225,6 +238,7 @@ export default function AdminTasks() {
                                                 setTaskDesc('');
                                                 setTaskDeadline('');
                                                 setTaskDocUrl('');
+                                                setTaskReward('');
                                             }}
                                             className="flex-1 bg-white/5 text-white font-bold py-3 rounded-xl hover:bg-white/10 transition-all"
                                         >
@@ -267,6 +281,11 @@ export default function AdminTasks() {
                                                                 task.status === 'In Progress' ? 'bg-blue-500/10 text-blue-500' : 'bg-amber-500/10 text-amber-500'}`}>
                                                             {task.status}
                                                         </span>
+                                                        {task.reward && (
+                                                            <span className="text-[11px] font-black text-secondary uppercase tracking-[0.1em] whitespace-nowrap">
+                                                                Reward: <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">{task.reward}</span>
+                                                            </span>
+                                                        )}
                                                     </div>
                                                     {task.description && (
                                                         <p className="text-slate-400 text-sm leading-relaxed mb-4">{task.description}</p>

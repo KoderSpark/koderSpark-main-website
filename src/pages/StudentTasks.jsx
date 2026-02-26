@@ -40,17 +40,26 @@ function TaskCard({ task, index, onRefresh }) {
     return (
         <>
             <div className="bg-surface/30 hover:bg-surface/50 border border-white/5 hover:border-secondary/20 p-5 md:p-6 rounded-[28px] transition-all duration-300 group shadow-lg flex flex-col h-full overflow-hidden">
-                <div className="flex items-start justify-between gap-4 mb-4">
-                    <div className={`p-2.5 rounded-xl border ${task.status === 'Completed' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
-                        task.status === 'In Progress' ? 'bg-blue-500/10 border-blue-500/20 text-blue-500' :
-                            'bg-amber-500/10 border-amber-500/20 text-amber-500'}`}>
-                        {task.status === 'Completed' ? <CheckCircle2 className="w-5 h-5" /> : <Clock className="w-5 h-5" />}
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                    <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-xl border ${task.status === 'Completed' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
+                            task.status === 'In Progress' ? 'bg-blue-500/10 border-blue-500/20 text-blue-500' :
+                                'bg-amber-500/10 border-amber-500/20 text-amber-500'}`}>
+                            {task.status === 'Completed' ? <CheckCircle2 className="w-5 h-5" /> : <Clock className="w-5 h-5" />}
+                        </div>
+                        <span className={`text-[9px] px-2.5 py-1 rounded-full font-black uppercase tracking-widest border ${task.status === 'Completed' ? 'border-emerald-500/20 text-emerald-500' :
+                            task.status === 'In Progress' ? 'border-blue-500/20 text-blue-500' :
+                                'border-amber-500/20 text-amber-500'}`}>
+                            {task.status}
+                        </span>
                     </div>
-                    <span className={`text-[9px] px-2.5 py-1 rounded-full font-black uppercase tracking-widest border ${task.status === 'Completed' ? 'border-emerald-500/20 text-emerald-500' :
-                        task.status === 'In Progress' ? 'border-blue-500/20 text-blue-500' :
-                            'border-amber-500/20 text-amber-500'}`}>
-                        {task.status}
-                    </span>
+                    {task.reward && (
+                        <div className="text-[12px] font-black uppercase tracking-[0.1em] whitespace-nowrap">
+                            <span className="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(251,191,36,0.5)] animate-pulse">
+                                Reward : {task.reward}
+                            </span>
+                        </div>
+                    )}
                 </div>
 
                 <h3 className="text-lg font-black text-white mb-3 group-hover:text-secondary transition-colors leading-tight uppercase tracking-tighter">
