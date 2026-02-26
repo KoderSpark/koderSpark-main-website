@@ -9,7 +9,7 @@ export default function StudentLayout() {
     const navigate = useNavigate();
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [careerOpen, setCareerOpen] = useState(false);
+    const [placementsOpen, setPlacementsOpen] = useState(false);
     const [student, setStudent] = useState(null);
 
     useEffect(() => {
@@ -37,22 +37,25 @@ export default function StudentLayout() {
         navigate('/studentloginks');
     };
 
-    const navItems = [
+    const navItemsTop = [
         { path: '/student/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
         { path: '/student/classes', icon: BookOpen, label: 'Classes' },
         { path: '/student/tasks', icon: ClipboardList, label: 'Tasks' },
-        { path: '/student/earnings', icon: IndianRupee, label: 'Earnings' },
-        { path: '/student/refer-earn', icon: Users, label: 'Refer & Earn' },
         { path: '/student/hackathon', icon: Trophy, label: 'Hackathon' },
-        { path: '/student/profile', icon: User, label: 'Profile' },
     ];
 
-    const careerItems = [
+    const placementsItems = [
         { path: '/student/career/jobs', icon: Briefcase, label: 'Jobs' },
         { path: '/student/career/internships', icon: GraduationCap, label: 'Internships' },
     ];
 
-    const isCareerActive = careerItems.some(item => location.pathname === item.path);
+    const navItemsBottom = [
+        { path: '/student/earnings', icon: IndianRupee, label: 'Earnings' },
+        { path: '/student/refer-earn', icon: Users, label: 'Refer and Earn' },
+        { path: '/student/profile', icon: User, label: 'Profile' },
+    ];
+
+    const isPlacementsActive = placementsItems.some(item => location.pathname === item.path);
 
     // Shared nav link style helper
     const linkClass = (active) =>
@@ -89,7 +92,7 @@ export default function StudentLayout() {
 
                 {/* Scrollable nav area */}
                 <div className="flex-1 overflow-y-auto px-6 pb-4 space-y-1" data-lenis-prevent>
-                    {navItems.map(item => (
+                    {navItemsTop.map(item => (
                         <Link
                             key={item.path}
                             to={item.path}
@@ -104,22 +107,22 @@ export default function StudentLayout() {
                         </Link>
                     ))}
 
-                    {/* Career Dropdown */}
+                    {/* Placements Dropdown */}
                     <div>
                         <button
-                            onClick={() => setCareerOpen(o => !o)}
-                            className={`flex items-center gap-4 p-4 rounded-xl text-sm font-bold uppercase tracking-widest transition-all duration-300 w-full ${isCareerActive
+                            onClick={() => setPlacementsOpen(o => !o)}
+                            className={`flex items-center gap-4 p-4 rounded-xl text-sm font-bold uppercase tracking-widest transition-all duration-300 w-full ${isPlacementsActive
                                 ? 'bg-secondary/10 text-secondary border border-secondary/20'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
                                 }`}
                         >
                             <Briefcase className="w-5 h-5 flex-shrink-0" />
-                            <span className="flex-1 text-left">Career</span>
-                            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${careerOpen ? 'rotate-180' : ''}`} />
+                            <span className="flex-1 text-left">Placements</span>
+                            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${placementsOpen ? 'rotate-180' : ''}`} />
                         </button>
-                        {careerOpen && (
+                        {placementsOpen && (
                             <div className="ml-4 mt-1 space-y-1 border-l border-white/10 pl-4">
-                                {careerItems.map(item => (
+                                {placementsItems.map(item => (
                                     <Link
                                         key={item.path}
                                         to={item.path}
@@ -133,12 +136,31 @@ export default function StudentLayout() {
                             </div>
                         )}
                     </div>
+
+                    {navItemsBottom.map(item => (
+                        <Link
+                            key={item.path}
+                            to={item.path}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={`flex items-center gap-4 p-4 rounded-xl text-sm font-bold uppercase tracking-widest transition-all duration-300 ${location.pathname === item.path
+                                ? 'bg-secondary/10 text-secondary border border-secondary/20'
+                                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                                }`}
+                        >
+                            <item.icon className="w-5 h-5 flex-shrink-0" />
+                            <span>{item.label}</span>
+                        </Link>
+                    ))}
                 </div>
 
                 {/* Bottom: student info + logout */}
                 <div className="p-6 flex-shrink-0 space-y-4 border-t border-white/5">
                     {student && (
-                        <div className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/5">
+                        <Link
+                            to="/student/profile"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors"
+                        >
                             <div className="w-9 h-9 rounded-full overflow-hidden border border-white/10 flex-shrink-0">
                                 {student.profileImage
                                     ? <img src={student.profileImage} alt="" className="w-full h-full object-cover" />
@@ -149,7 +171,7 @@ export default function StudentLayout() {
                                 <p className="text-xs font-bold text-white truncate uppercase tracking-tighter">{student.fullName}</p>
                                 <p className="text-[9px] text-slate-500 uppercase tracking-tighter truncate">{student.course || student.domain}</p>
                             </div>
-                        </div>
+                        </Link>
                     )}
                     <button onClick={handleLogout} className="flex items-center gap-4 p-4 rounded-xl text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors w-full">
                         <LogOut className="w-5 h-5" />
@@ -181,7 +203,7 @@ export default function StudentLayout() {
 
                 {/* Scrollable Nav */}
                 <div className="flex-1 overflow-y-auto px-4 space-y-1 pb-4" data-lenis-prevent>
-                    {navItems.map(item => (
+                    {navItemsTop.map(item => (
                         <Link
                             key={item.path}
                             to={item.path}
@@ -193,24 +215,31 @@ export default function StudentLayout() {
                         </Link>
                     ))}
 
-                    {/* Career Dropdown */}
+                    {/* Placements Dropdown */}
                     <div>
                         <button
-                            onClick={() => !isCollapsed && setCareerOpen(o => !o)}
-                            title={isCollapsed ? 'Career' : ''}
-                            className={`${linkClass(isCareerActive)} ${isCollapsed ? 'justify-center' : ''}`}
+                            onClick={() => {
+                                if (isCollapsed) {
+                                    setIsCollapsed(false);
+                                    setPlacementsOpen(true);
+                                } else {
+                                    setPlacementsOpen(o => !o);
+                                }
+                            }}
+                            title={isCollapsed ? 'Placements' : ''}
+                            className={`${linkClass(isPlacementsActive)} ${isCollapsed ? 'justify-center' : ''}`}
                         >
-                            <Briefcase className={`w-5 h-5 flex-shrink-0 ${isCareerActive ? 'animate-pulse' : ''}`} />
+                            <Briefcase className={`w-5 h-5 flex-shrink-0 ${isPlacementsActive ? 'animate-pulse' : ''}`} />
                             {!isCollapsed && (
                                 <>
-                                    <span className="flex-1 text-left">Career</span>
-                                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${careerOpen ? 'rotate-180' : ''}`} />
+                                    <span className="flex-1 text-left">Placements</span>
+                                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${placementsOpen ? 'rotate-180' : ''}`} />
                                 </>
                             )}
                         </button>
-                        {careerOpen && !isCollapsed && (
+                        {placementsOpen && !isCollapsed && (
                             <div className="ml-4 mt-1 space-y-1 border-l border-white/10 pl-4">
-                                {careerItems.map(item => (
+                                {placementsItems.map(item => (
                                     <Link
                                         key={item.path}
                                         to={item.path}
@@ -223,25 +252,40 @@ export default function StudentLayout() {
                             </div>
                         )}
                     </div>
+
+                    {navItemsBottom.map(item => (
+                        <Link
+                            key={item.path}
+                            to={item.path}
+                            title={isCollapsed ? item.label : ''}
+                            className={`${linkClass(location.pathname === item.path)} ${isCollapsed ? 'justify-center' : ''}`}
+                        >
+                            <item.icon className={`w-5 h-5 flex-shrink-0 ${location.pathname === item.path ? 'animate-pulse' : ''}`} />
+                            {!isCollapsed && <span>{item.label}</span>}
+                        </Link>
+                    ))}
                 </div>
 
                 {/* Bottom: student info + logout */}
                 <div className="px-4 pb-6 pt-4 flex-shrink-0 space-y-4 border-t border-white/5">
                     {student && !isCollapsed && (
-                        <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
+                        <Link
+                            to="/student/profile"
+                            className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-all block group"
+                        >
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-xl overflow-hidden border border-white/10 flex-shrink-0">
+                                <div className="w-9 h-9 rounded-xl overflow-hidden border border-white/10 flex-shrink-0 group-hover:scale-105 transition-transform">
                                     {student.profileImage
                                         ? <img src={student.profileImage} alt="" className="w-full h-full object-cover" />
                                         : <div className="w-full h-full bg-slate-800 flex items-center justify-center text-xs font-black">{student.fullName?.charAt(0)}</div>
                                     }
                                 </div>
                                 <div className="min-w-0">
-                                    <p className="text-[11px] font-black text-white truncate uppercase tracking-tighter">{student.fullName}</p>
+                                    <p className="text-[11px] font-black text-white truncate uppercase tracking-tighter group-hover:text-secondary transition-colors">{student.fullName}</p>
                                     <p className="text-[9px] text-slate-500 uppercase tracking-widest truncate">{student.status} Student</p>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     )}
                     <button
                         onClick={handleLogout}
