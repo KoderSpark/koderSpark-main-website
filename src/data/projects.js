@@ -1,5 +1,75 @@
 export const projects = [
     {
+        id: 120,
+        title: "YASH FILM FACTORY",
+        description: "We don't just film; we excavate. Every frame is a deliberate attempt to capture the unseen frequencies of human emotion. Vision meets execution in this ultra-premium cinematic experience.",
+        image: "/yff_movies.webp",
+        link: "https://www.yffmovies.com/",
+        reviews: [
+            { name: "Aditya Roy", role: "Director", text: "YFF understands the soul of cinema. Their production quality is unmatched." },
+            { name: "K. Meera", role: "Producer", text: "From script to screen, the execution was flawless and visually stunning." },
+            { name: "R. Siddharth", role: "Cinematographer", text: "The attention to lighting and detail in their studio is world-class." },
+            { name: "S. Varun", role: "Actor", text: "A truly professional environment that brings out the best in every artist." },
+            { name: "N. Pooja", role: "Writer", text: "They treated my script with such reverence. The final output exceeded my dreams." }
+        ]
+    },
+    {
+        id: 122,
+        title: "The Ark Atelier",
+        description: "Award-winning interior designers in Hyderabad. Luxury residential and commercial interiors, modular kitchens, and full turnkey fit-outs delivered from concept to completion with unmatched precision.",
+        image: "/ARK.webp",
+        link: "https://www.thearkatelier.com/",
+        reviews: [
+            { name: "Vikram Reddy", role: "Villa Owner", text: "They transformed our home into a masterpiece. Their attention to detail is incredible." },
+            { name: "Priya Sharma", role: "Client", text: "Professional and creative team. They really understood our vision for the luxury kitchen." },
+            { name: "Arjun V", role: "Commercial Client", text: "Best office interior project execution we've experienced in Hyderabad." },
+            { name: "S. Kavita", role: "Client", text: "The turnkey solution made our renovation completely stress-free." },
+            { name: "N. Rahul", role: "Client", text: "Stunning designs and high-quality materials used throughout." }
+        ]
+    },
+    {
+        id: 121,
+        title: "My ShutterWala",
+        description: "India's #1 Subscription-based Rolling Shutter Maintenance & Repair Service. Professional maintenance, emergency repair, and installation for manual & motorized shutters, serving businesses across India.",
+        image: "/Shutterwala.webp",
+        link: "https://www.myshutterwala.in/",
+        reviews: [
+            { name: "Srinivas Rao", role: "Business Owner", text: "Best service for our warehouse shutters. The subscription model gives us peace of mind." },
+            { name: "P. Venkat", role: "Retailer", text: "Quick emergency repair when our motorized shutter got stuck. Highly professional." },
+            { name: "Anjali K", role: "Architect", text: "Reliable partner for all our commercial project shutter installations." },
+            { name: "M. Rajesh", role: "Client", text: "Transparent pricing and quality workmanship." },
+            { name: "K. Suresh", role: "Manager", text: "The maintenance schedule is very well managed." }
+        ]
+    },
+    {
+        id: 123,
+        title: "LuxeVault",
+        description: "A premier luxury ecosystem specializing in high-end assets and exclusive digital experiences. Experience the pinnacle of security, sophistication, and seamless luxury management in a digital-first world.",
+        image: "/LuxVault.webp",
+        link: "https://www.luxevault.world/",
+        reviews: [
+            { name: "Alex J", role: "Luxury Collector", text: "The most secure and sophisticated platform for managing high-value assets." },
+            { name: "Elena V", role: "User", text: "Exquisite interface and premium feel. Truly reflects luxury at every step." },
+            { name: "Mark S", role: "Investor", text: "A revolutionary way to experience and manage luxury digitally." },
+            { name: "Sarah K", role: "Member", text: "The attention to privacy and detail is what makes LuxeVault stand out." },
+            { name: "David L", role: "Client", text: "Seamless experience for the modern luxury enthusiast." }
+        ]
+    },
+    {
+        id: 117,
+        title: "Sree Comfortables",
+        description: "SREE COMFORTABLES Pvt. Ltd. is a premier manufacturer of office furniture and interior solutions in Kukatpally, Hyderabad. Custom workstations, residential interiors, and executive cabins designed for comfort and style.",
+        image: "/sree_comfortables.webp",
+        link: "https://www.sreecomfortables.in/",
+        reviews: [
+            { name: "Sreenivasa Gorantla", role: "Client", text: "Excellent showcase of our furniture catalog. Business inquiries increased!" },
+            { name: "Krishna Mohan", role: "Customer", text: "Bought office chairs, very comfortable and durable." },
+            { name: "Jaya Sudha", role: "Customer", text: "They designed our home interiors perfectly." },
+            { name: "B. Ramu", role: "Corporate Client", text: "Best workstations for our new office space." },
+            { name: "G. Hemanth", role: "Customer", text: "Quality manufacturing and timely delivery." }
+        ]
+    },
+    {
         id: 104,
         title: "Medi Cost Saver",
         description: "Affordable Healthcare For Every Indian Family. MCS Discount Cards save you up to 25% on medical expenses through our trusted network of healthcare providers. Experience healthcare savings on medical bills, pharmacy purchases, and diagnostic tests.",
@@ -182,20 +252,6 @@ export const projects = [
         ]
     },
     {
-        id: 117,
-        title: "Sree Comfortables",
-        description: "SREE COMFORTABLES Pvt. Ltd. is a premier manufacturer of office furniture and interior solutions in Kukatpally, Hyderabad. Custom workstations, residential interiors, and executive cabins designed for comfort and style.",
-        image: "/sree_comfortables.webp",
-        link: "https://www.sreecomfortables.in/",
-        reviews: [
-            { name: "Sreenivasa Gorantla", role: "Client", text: "Excellent showcase of our furniture catalog. Business inquiries increased!" },
-            { name: "Krishna Mohan", role: "Customer", text: "Bought office chairs, very comfortable and durable." },
-            { name: "Jaya Sudha", role: "Customer", text: "They designed our home interiors perfectly." },
-            { name: "B. Ramu", role: "Corporate Client", text: "Best workstations for our new office space." },
-            { name: "G. Hemanth", role: "Customer", text: "Quality manufacturing and timely delivery." }
-        ]
-    },
-    {
         id: 118,
         title: "Chit Funds Premium",
         description: "A trusted platform managed by Ambati Yellesh for exploring and managing premium chit fund schemes. Dedicated to providing financial growth and secure savings options with transparency and reliability.",
@@ -221,20 +277,6 @@ export const projects = [
             { name: "Rahul M", role: "Startup Founder", text: "Hired our core team through this platform. The quality of talent is exceptional." },
             { name: "P. Sneha", role: "HR Manager", text: "The instant hiring feature creates a seamless experience for both parties." },
             { name: "V. Arjun", role: "Developer", text: "Showcasing projects instead of just resumes made all the difference." }
-        ]
-    },
-    {
-        id: 120,
-        title: "YASH FILM FACTORY",
-        description: "We don't just film; we excavate. Every frame is a deliberate attempt to capture the unseen frequencies of human emotion. Vision meets execution in this ultra-premium cinematic experience.",
-        image: "/yff_movies.webp",
-        link: "https://www.yffmovies.com/",
-        reviews: [
-            { name: "Aditya Roy", role: "Director", text: "YFF understands the soul of cinema. Their production quality is unmatched." },
-            { name: "K. Meera", role: "Producer", text: "From script to screen, the execution was flawless and visually stunning." },
-            { name: "R. Siddharth", role: "Cinematographer", text: "The attention to lighting and detail in their studio is world-class." },
-            { name: "S. Varun", role: "Actor", text: "A truly professional environment that brings out the best in every artist." },
-            { name: "N. Pooja", role: "Writer", text: "They treated my script with such reverence. The final output exceeded my dreams." }
         ]
     }
 ];
