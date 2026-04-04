@@ -106,8 +106,13 @@ const Work = () => {
                     key={currentPage} // Re-trigger animation on page change
                     className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
                 >
-                    {currentItems.map((project) => (
-                        <ProjectCard key={project.id} project={project} variants={itemVariants} />
+                    {currentItems.map((project, index) => (
+                        <ProjectCard 
+                            key={project.id} 
+                            project={project} 
+                            variants={itemVariants} 
+                            priority={index < 3}
+                        />
                     ))}
                 </motion.div>
 
